@@ -1,0 +1,222 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+{% include 'includes/head.html' %}
+<body>
+    <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+
+    <!-- header-start -->
+    {% include 'deutsch/includes/header.html' %}
+    <!-- header-end -->
+    <div style="height: 120px">
+    </div>
+
+
+
+
+    <!-- QUIZ ONE -->
+    <div class="container">
+      <section class="section-1" id="section-1">
+
+          <div class="main-quiz">
+                <div id="score">
+                    <p class="lead"></p>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" id="progress-bar" style="width: 99%;">
+
+                  </div>
+                </div>
+                <div class="panel panel-primary">
+                  <div class="panel-heading m-3">
+                    <h2 id="question">Question here</h2>
+                  </div>
+                  <div class="panel-body" id="content">
+                  </div>
+                </div>
+
+          </div>
+      </section>
+    </div>
+  <script>
+
+	  /**
+  	 * Set the information about your questions here. The correct answer string needs to match
+  	 * the correct choice exactly, as it does string matching. (case sensitive)
+  	 *
+  	 */
+		var quiz = [
+			{
+				"question"		: 	"Q1: Who came up with theory of relativity?",
+				"choices"		: 	[
+										"Sir Isaac Newton",
+										"Nicolaus Copernicus",
+										"Albert Einstein",
+										"Ralph Waldo Emmerson"
+									],
+				"correct"		: 	"Albert Einstein",
+				"explanation"	: 	"Albert Einstein drafted the special theory of relativity in 1905.",
+
+			},
+			{
+				"question"		: 	"Q2: Who is on the two dollar bill?",
+				"choices"		: 	[
+										"Thomas Jefferson",
+										"Dwight D. Eisenhower",
+										"Benjamin Franklin",
+										"Abraham Lincoln"
+									],
+				"correct"		: 	"Thomas Jefferson",
+				"explanation"	: 	"The two dollar bill is seldom seen in circulation. As a result, some businesses are confused when presented with the note.",
+			},
+			{
+				"question"		: 	"Q3: What event began on April 12, 1861?",
+				"choices"		: 	[
+										"First manned flight",
+										"California became a state",
+										"American Civil War began",
+										"Declaration of Independence"
+									],
+				"correct"		: 	"American Civil War began",
+				"explanation"	: 	"South Carolina came under attack when Confederate soldiers attacked Fort Sumter. The war lasted until April 9th 1865.",
+			},
+
+		];
+
+		var currentQuestion = 0;
+        var progressPerсent = 10;
+		var score = 0;
+		var askingQuestion = true;
+
+		function loadQuestion(){
+
+			//clear out radio buttons from previous question
+            let content = document.getElementById('content');
+			content.innerHTML = "";
+
+			//loop through choices, and create radio buttons
+			for(var i=0; i < quiz[currentQuestion]["choices"].length; i++){
+
+                let divElement = document.createElement('div');
+                divElement.className="radio";
+
+				let radioButton  = document.createElement('input');
+				radioButton.type = 'radio';
+				radioButton.name = 'optionsRadios';
+				radioButton.id = 'optionsRadios'+ (i+1);
+                radioButton.value = quiz[currentQuestion]["choices"][i];
+
+                let label = document.createElement('label');
+				label.setAttribute('for','optionsRadios'+ (i+1));
+                label.onclick = function () {console.log(this)}
+                label.innerHTML = "<span class='alphabet'>"+(i+1)+"</span> "+quiz[currentQuestion]["choices"][i]
+
+                //label.innerHTML = "&nbsp;"+quiz[currentQuestion]["choices"][i];
+
+                divElement.appendChild(label);
+                divElement.appendChild(radioButton);
+				content.insertBefore(divElement, null);
+
+			}
+
+			//load the question
+			document.getElementById('question').innerHTML = quiz[currentQuestion]["question"];
+
+			//setup score for first time
+            setProgressbarData();
+
+		}
+
+		function checkAnswer(){
+
+			//are we asking a question, or proceeding to next question?
+			if(askingQuestion){
+
+				//change button text to next question, so next time they click it, it goes to next question
+				document.getElementById('check').innerHTML = 'Next Question';
+				askingQuestion = false;
+
+				//determine which radio button they clicked
+				var userpick;
+				var correctIndex;
+				var radios = document.getElementsByName('optionsRadios');
+				for(var i=0; i < radios.length; i++){
+					if(radios[i].checked){ //if this radio button is checked
+						userpick = radios[i].value;
+					}
+					//get index of correct answer
+					if(radios[i].value == quiz[currentQuestion]["correct"]){
+						correctIndex = i;
+					}
+				}
+
+                console.log(currentQuestion)
+
+				//set the color if they got it right, or wrong
+				if(userpick == quiz[currentQuestion]["correct"]){
+					score++;
+					document.getElementsByTagName('label')[correctIndex].style.color = "green";
+					document.getElementsByTagName('label')[correctIndex].style.fontWeight = "bold";
+					document.getElementById('explanation').innerHTML = "<h3>Correct!</h3>";
+				} else {
+					document.getElementsByTagName('label')[correctIndex].style.color = "red";
+					document.getElementsByTagName('label')[correctIndex].style.fontWeight = "bold";
+					document.getElementById('explanation').innerHTML = "<h3>Incorrect</h3>";
+				}
+
+				document.getElementById('explanation').innerHTML += '<p>' + quiz[currentQuestion]["explanation"] + '</p>';
+				setProgressbarData()
+
+			} else { //reset form and move to next question
+
+				//setting up so user can ask a question
+				askingQuestion = true;
+
+				//change button text back to 'submit answer'
+				document.getElementById('check').innerHTML = 'Submit Answer';
+
+				document.getElementById('explanation').innerHTML = "";
+
+				//if we're not on last question, increase question number
+				if(currentQuestion < quiz.length - 1){
+					currentQuestion++;
+					loadQuestion();
+				} else {
+					showFinalResults();
+				}
+
+			}
+		}
+
+        function setProgressbarData() {
+            document.getElementById('progress-bar').style.width = ''+(100*currentQuestion/quiz.length)+'%';
+            document.getElementById('score').innerHTML = '<p>Вопрос: ' + (currentQuestion+1) + ' из '+ quiz.length + '</p>';
+        }
+
+		function showFinalResults(){
+
+            document.getElementById('progress-bar').style.width = '100%';
+
+			document.getElementById('content').innerHTML = '<h2>You Completed The Quiz</h2>';
+			document.getElementById('content').innerHTML += '<p>Below are your results:</p>';
+			document.getElementById('content').innerHTML += '<h2>' + score + ' out of ' + quiz.length + ' questions, ' + Math.round(score/quiz.length * 100) + '%</h2>';
+
+			//delete the button
+			var button = document.getElementById('check');
+			button.parentNode.removeChild(button); //js requires you to delete elements from the parent
+
+			//remove question
+			document.getElementById('question').innerHTML = "";
+
+		}
+
+		window.onload = loadQuestion;
+
+</script>
+
+</body>
+
+</html>
+

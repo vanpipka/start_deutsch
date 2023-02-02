@@ -1,0 +1,298 @@
+{% load home_extras %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+{% include 'includes/head.html' %}
+
+<body>
+
+    <style>
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid #FFF;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .ll-repetition__text{
+            color: #fff;
+            font-size: 36px;
+            font-stretch: normal;
+            font-style: normal;
+            font-weight: 400;
+            letter-spacing: normal;
+            line-height: normal;
+            text-align: center;
+        }
+
+        .ll-repetition__words-left{
+            align-items: center;
+            -webkit-animation-delay: 0s;
+            animation-delay: 0s;
+            -webkit-animation-duration: .2s;
+            animation-duration: .2s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            -webkit-animation-iteration-count: 1;
+            animation-iteration-count: 1;
+            -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+            background-position: 50%;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-size: 100%;
+            background-size: auto;
+            border: 1px solid hsla(0,0%,100%,.5);
+            border-radius: 50%;
+            display: inline-flex;
+            flex-direction: column;
+            height: 100px;
+            justify-content: center;
+            margin-bottom: 40px;
+            transition: all .2s ease;
+            width: 100px;
+        }
+    </style>
+    <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+
+    <!-- header-start -->
+    {% include 'deutsch/includes/header.html' %}
+    <!-- header-end -->
+    <div style="height: 120px">
+    </div>
+    <!-- QUIZ ONE -->
+
+    <div class="container d-flex justify-content-center" style="min-height: 80%">
+
+        <div class="quiz_menu d-flex align-items-center w-100 justify-content-center">
+
+            <span id="loader" class="loader"></span>
+            <div id="test" style="width: 100%;" hidden>
+                <div class="w-100 d-flex justify-content-end">
+                    <a href="/" style="color: #9dcffc; max-width: 20px">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" style="width: 100%">
+                                    <path fill="currentcolor" d="M.974 0L0 .974 5.026 6 0 11.026.974 12 6 6.974 11.026 12l.974-.974L6.974 6 12 .974 11.026 0 6 5.026z"></path>
+                        </svg>
+                    </a>
+                </div>
+                <div class="">
+                    <div class="w-100 d-flex align-items-center justify-content-center">
+
+                        <div class="ll-repetition__words-left">
+                            <div class="ll-repetition__words-left-number" id="words_count"></div>
+                            <div class="ll-repetition__words-left-text">wörter</div>
+                        </div>
+                    </div>
+
+                    <div class="ll-repetition__text mb-3" id="question_word">
+                    </div>
+
+                    <div class="mt-3 row d-flex justify-content-center">
+
+                        <div class="m-2 col col-10 col-lg-5 col-sm-10">
+
+                            <a href id="left_word_btn" onclick="event.preventDefault(); check_result(this)" class="p-3 genric-btn info-border container-fluid">
+                                <div class="d-flex">
+                                    <div style="margin-top: auto; margin-bottom: auto; width: 5%">←&nbsp;</div>
+                                    <div id="left_word" style="width: 90%"></div>
+                                    <div style="width: 5%"></div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="m-2 col col-10 col-lg-5 col-sm-10">
+                                <a href id="right_word_btn" onclick="event.preventDefault(); check_result(this)" class="p-3 genric-btn info-border container-fluid">
+                                    <div class="d-flex">
+                                        <div style="width: 5%"></div>
+                                        <div id="right_word" style="width: 90%"></div>
+                                        <div style="margin-top: auto; margin-bottom: auto; width: 5%">&nbsp;→</div>
+                                    </div>
+                                </a>
+                        </div>
+                    </div>
+
+                    <div class="d-none row d-md-flex justify-content-center mt-5">
+                        <p style="color: #9dcffc">Ответы можно выбирать стрелками на клавиатуре</p>
+                    </div>
+                </div>
+            </div>
+            <div id="result" class="p-3 m-3" hidden style="background-color: white; border-radius: 10px;">
+                {% csrf_token %}
+                <H5 id="result_header">Результат: </H5>
+                <table class="table">
+                    <tbody id="result_body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            load_words()
+        }, false);
+
+        let words_array = [];
+        let position = 0;
+
+        function load_words(){
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState != 4) return;
+                if (xhr.status != 200) {
+                } else {
+                    let data = JSON.parse(xhr.responseText);
+                    words_array = data.data;
+                    make_words_quiz_step_1();
+                }
+            }
+            xhr.open("GET", "{% get_attribute 'DEUTSCH_HOME_PAGE' %}quiz/api/get_random_words?count=30", true);
+            xhr.send();
+        }
+
+        function make_words_quiz_step_1(){
+
+            if (words_array.length == 0) {
+                Alert.alert("Ошибка при загрузке, попробуйте обновить страницу");
+                return;
+            }
+
+            set_question()
+
+            document.getElementById("loader").hidden = true;
+            setTimeout(() => {document.getElementById("test").hidden = false;}, 500);
+
+        }
+
+        function check_result(el){
+            text_el = document.getElementById('question_word')
+            if (words_array[position-1].left == 1){
+                if (el.id=="left_word_btn"){
+                    el.classList.add("success")
+                    el.classList.remove("info-border")
+                    text_el.style.color = "#4cd3e3"
+                    words_array[position-1].result = true
+                }else{
+                    el.classList.add("danger")
+                    el.classList.remove("info-border")
+                    text_el.style.color = "#f44a40"
+                    words_array[position-1].result = false
+                }
+            }else{
+                if (el.id=="left_word_btn"){
+                    el.classList.add("danger")
+                    el.classList.remove("info-border")
+                    text_el.style.color = "#f44a40"
+                    words_array[position-1].result = false
+                }else{
+                    el.classList.add("success")
+                    el.classList.remove("info-border")
+                    text_el.style.color = "#4cd3e3"
+                    words_array[position-1].result = true
+                }
+            }
+            setTimeout(() => {set_question()}, 1000);
+
+        }
+
+        function set_question(){
+
+            if (position >= words_array.length) {
+                get_result()
+                return
+            }
+
+            let curr_question = words_array[position]
+            let lft_btn = document.getElementById("right_word_btn")
+            let rgt_btn = document.getElementById("left_word_btn")
+            let qst_word = document.getElementById("question_word")
+
+            qst_word.innerHTML = curr_question.text;
+            qst_word.style.color = "#fff"
+
+            lft_btn.classList.remove("danger")
+            lft_btn.classList.add("info-border")
+            rgt_btn.classList.remove("danger")
+            rgt_btn.classList.add("info-border")
+
+            if (curr_question.left == 1) {
+                document.getElementById("left_word").innerHTML = curr_question.translation;
+                document.getElementById("right_word").innerHTML = curr_question.wrong_answer;
+            }else{
+                document.getElementById("right_word").innerHTML = curr_question.translation;
+                document.getElementById("left_word").innerHTML = curr_question.wrong_answer;
+            }
+            document.getElementById("words_count").innerHTML = words_array.length-position;
+            position = position+1
+
+        }
+
+        function get_result(){
+            document.getElementById("test").hidden = true;
+            document.getElementById("result").hidden = false;
+            let r_body = document.getElementById("result_body");
+            let right_answers = words_array.length;
+
+            for (let i=0; i<words_array.length; i++){
+                let el = words_array[i]
+                tr = document.createElement("TR");
+
+                if (el.result == true){
+                    tr.style.color = "#28A768"
+                }else{
+                    tr.style.color = "#dc3545"
+                    right_answers--
+                }
+
+                tr.innerHTML = "<th scope='row'>"+
+                    (i+1)+"</th><td>"+
+                    el.text+"</td><td>"+
+                    el.translation+"</td>";
+                r_body.appendChild(tr)
+            }
+            document.getElementById("result_header").innerHTML = "Результат: "
+                                            +(right_answers)+"/"+words_array.length;
+
+            set_result(right_answers)
+        }
+
+        function set_result(right_answers){
+
+            var formData = new FormData();
+            formData.append("data", JSON.stringify({right: right_answers, all: words_array.length}));
+            formData.append("csrfmiddlewaretoken", document.getElementsByName("csrfmiddlewaretoken")[0].value);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "{% get_attribute 'DEUTSCH_HOME_PAGE' %}quiz/api/set_words_result", true);
+            xhr.send(formData);
+
+        }
+
+        document.addEventListener('keydown', function(event) {
+
+            if (document.getElementById("test").hidden == false){
+                if (event.code == 'ArrowRight') {
+                    check_result(document.getElementById("right_word_btn"))
+                }else if (event.code == 'ArrowLeft') {
+                    check_result(document.getElementById("left_word_btn"))
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
