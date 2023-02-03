@@ -1,3 +1,6 @@
+from typing import Optional, List
+
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.contrib import admin
 from django.contrib.auth.models import User
@@ -48,7 +51,7 @@ class Category(models.Model):
                 "name": self.name,
                 "count": self.count,
                 "description": self.description,
-                "url": self.url,
+                "url": f"/{self.url}",
                 "image": self.img_url}
 
 
@@ -107,13 +110,25 @@ class Article(models.Model):
 
         super(Article, self).save(*args, **kwargs)
 
-    def get(id: str):
+    def get_as_dict(self):
+
+        return {"id": self.id,
+                "name": self.name,
+                "date": self.date,
+                "text": self.text,
+                "description": self.description,
+                "category": Category.get_as_dict(self.category),
+                "url": f"/article/?id={self.id}"
+                }
+
+    @staticmethod
+    def get_by_id(article_id: str) -> Optional["Article"]:
 
         elem = None
 
         try:
-            elem = Article.objects.get(id=id)
-        except Exception:
+            elem = Article.objects.get(id=article_id)
+        except ObjectDoesNotExist:
             elem = None
 
         return elem
@@ -134,6 +149,16 @@ class Comment(models.Model):
 
         super(Comment, self).save(*args, **kwargs)
 
+    def get_as_dict(self) -> dict:
+
+        return {"id": self.id,
+                "date": self.date,
+                "text": self.text,
+                "article": self.article_id,
+                "user": self.user_id,
+                "accepted": self.publish,
+                }
+
 
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('user', 'date', 'article', 'publish')
@@ -152,17 +177,19 @@ class AdditionalField(models.Model):
     def save(self, *args, **kwargs):
         super(AdditionalField, self).save(*args, **kwargs)
 
-    def get(user):
+    @staticmethod
+    def get_by_id(user: User) -> Optional["AdditionalField"]:
 
         elem = None
 
         try:
             elem = AdditionalField.objects.get(user=user)
-        except Exception:
+        except ObjectDoesNotExist:
             elem = None
 
         return elem
 
+    @staticmethod
     def set(data):
 
         user = data.get("user", "")
@@ -186,6 +213,15 @@ class AdditionalField(models.Model):
         except Exception as e:
             print(e)
             return False
+
+    def get_as_dict(self) -> dict:
+
+        return {"id": self.id,
+                "name": self.name,
+                "email": self.email,
+                "phone": self.phone,
+                "url": f"/users/?id={self.id}"
+                }
 
 
 class AdditionalFieldAdmin(admin.ModelAdmin):

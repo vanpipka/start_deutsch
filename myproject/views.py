@@ -1,4 +1,5 @@
-from django.http import HttpResponse, Http404, JsonResponse, HttpResponseRedirect
+from django.http import HttpResponse, JsonResponse
+from django.http import Http404, HttpResponseNotAllowed, HttpResponseServerError, HttpResponseRedirect
 from django.shortcuts import render
 from services import db_backend
 from django.conf import settings
@@ -37,9 +38,39 @@ def index(request):
     return render(
         request,
         'index.html',
-        context={"Category": db_backend.get_all_category(),
-                 "articles": db_backend.get_last_articles(5),
+        context={"category": db_backend.get_all_category(),
+                 "articles": db_backend.get_last_articles(12),
                  "head": "более 100+ заданий",
                  "keywords": "Задания а1"}
     )
 
+
+def article(request):
+
+    if request.method == "POST":
+
+        if not request.user.is_authenticated:
+            raise HttpResponseNotAllowed()
+        if db_backend.save_comment(request):
+            return HttpResponseRedirect(request.get_full_path())
+        else:
+            raise HttpResponseServerError("Unknown mistake")
+    else:
+
+        article_id = request.GET.get("id", None)
+
+        if not article_id:
+            raise Http404("Article not found")
+
+        article = db_backend.get_article(article_id)
+
+        if not article:
+            raise Http404("Article not found")
+
+        return render(
+                request,
+                'blog-details.html',
+                context={"categories": db_backend.get_all_category(),
+                         "article": article,
+                         "comments": db_backend.get_comments_by_article(request, article_id)}
+            )
