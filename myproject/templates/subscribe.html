@@ -1,0 +1,41 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+{% include 'includes/head.html' %}
+
+<body>
+    <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+
+    <!-- header-start -->
+    {% include 'includes/header.html' %}
+    <!-- header-end -->
+
+    <div style="height: 120px">
+    </div>
+
+    <div class="container">
+
+        <div class="d-flex justify-content-center p-5">
+
+        {% if result %}
+            <h3>Спасибо за подписку</h3>
+            <script>
+                localStorage.setItem('subscribed', 'true');
+            </script>
+        {% else %}
+
+            <h3>Что-то пошло не так. Попробуйте в другой раз.</h3>
+
+        {% endif %}
+
+        </div>
+
+    </div>
+
+    {% include 'includes/footer.html' %}
+
+</body>
+
+</html>

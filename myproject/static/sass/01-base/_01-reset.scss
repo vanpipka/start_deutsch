@@ -491,7 +491,7 @@ table {
     // }
     height: 75px;
     th {
-      color: var(--white);
+      color: #142442;
       @extend %title-font;
       &:first-child {
         padding-left: 30px;
@@ -509,8 +509,7 @@ table {
     // }
     td,
     th {
-      color: var(--white);
-      background-color: #142442;
+      color: #142442;
     }
     td {
       > div {

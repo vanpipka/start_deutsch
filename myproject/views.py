@@ -1,10 +1,9 @@
 from django.http import HttpResponse, JsonResponse
 from django.http import Http404, HttpResponseNotAllowed, HttpResponseServerError, HttpResponseRedirect
 from django.shortcuts import render
-from services import db_backend
+from services import db_backend, make_subscriber
 from django.conf import settings
 from django.contrib.auth.models import User
-from services.make_subscriber import make_subscriber
 from django.middleware import csrf
 
 # Опять же, спасибо django за готовую форму аутентификации.
@@ -39,7 +38,7 @@ def index(request):
         request,
         'index.html',
         context={"category": db_backend.get_all_category(),
-                 "articles": db_backend.get_last_articles(12),
+                 "articles": db_backend.get_last_articles(11),
                  "head": "более 100+ заданий",
                  "keywords": "Задания а1"}
     )
@@ -74,3 +73,33 @@ def article(request):
                          "article": article,
                          "comments": db_backend.get_comments_by_article(request, article_id)}
             )
+
+
+def subscribe(request):
+
+    if request.method != 'POST':
+        raise Http404("Page not found")
+
+    result: bool = make_subscriber.make_subscriber(request)
+
+    return render(
+        request,
+        'subscribe.html',
+        context={"result": result,
+                 "email": request.POST.get("email", "")}
+    )
+
+
+def blog(request):
+
+    category = db_backend.get_category_by_url(request)
+
+    if not category:
+        raise Http404("Page not found")
+
+    return render(
+            request,
+            "blog.html",
+            context=db_backend.get_context_by_category(category)
+    )
+

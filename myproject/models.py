@@ -36,22 +36,22 @@ class Category(models.Model):
         return str(self.name)
 
     @staticmethod
-    def get_by_id(category_id):
+    def get_by_id(category_id: str) -> Optional["Category"]:
 
         category = None
         try:
             category = Category.objects.get(id=category_id)
-        except:
+        except ObjectDoesNotExist:
             print('cant get category with id:' + str(category_id))
 
         return category
 
-    def get_as_dict(self):
+    def get_as_dict(self) -> dict:
         return {"id": self.id,
                 "name": self.name,
                 "count": self.count,
                 "description": self.description,
-                "url": f"/{self.url}",
+                "url": self.url,
                 "image": self.img_url}
 
 

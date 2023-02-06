@@ -44,20 +44,12 @@ def an_even_number(value: int) -> bool:
     return False
 
 
-@register.filter(name='get_X')
-def get_X(value: int) -> int:
+@register.filter(name='cut_text')
+def cut_text(value: str) -> str:
 
-    return 82 + ((value+1) // 2)
+    str_val = str(value)
+    if len(str_val) >= 50:
+        str_val = f"{str_val[:50]}..."
 
+    return str_val
 
-@register.filter(name='get_Y')
-def get_Y(value: int, div: int) -> int:
-
-    result: int = 0
-
-    if div == 0:
-        result = value*2-1
-    else:
-        result = value*2
-
-    return 390+result

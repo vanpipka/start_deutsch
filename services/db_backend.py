@@ -1,7 +1,10 @@
 from typing import List, Optional
+from urllib.request import Request
 
 from myproject.models import Category, Article, Comment, AdditionalField
 from myproject.forms import CommentForm
+from services.constants import CATEGORY_DATA
+
 
 def get_last_articles(count: int) -> List:
 
@@ -18,6 +21,18 @@ def get_last_articles(count: int) -> List:
     return result
 
 
+def get_articles_by_category(category: Category) -> List:
+
+    arr = []
+
+    for e in Article.objects.all().filter(category=category).order_by('-date'):
+        if str(e.id) == '00000000-0000-0000-0000-000000000000':
+            continue
+        arr.append(Article.get_as_dict(e))
+
+    return arr
+
+
 def get_all_category() -> List:
     result = []
 
@@ -28,6 +43,31 @@ def get_all_category() -> List:
         result.append(Category.get_as_dict(element))
 
     return result
+
+
+def get_context_by_category(category: Category) -> dict:
+
+    category_info = CATEGORY_DATA.get(category.url, {})
+
+    return {
+        "category": category,
+        "articles": get_articles_by_category(category),
+        "H1": category.name,
+        "description": category_info.get("description", ""),
+        "head": category_info.get("head", ""),
+        "keywords": category_info.get("keywords", "")}
+
+
+def get_category_by_url(request: Request) -> Optional["Category"]:
+
+    arr = [i for i in request.path.split("/") if i]
+
+    if not arr:
+        return None
+
+    category = Category.objects.all().filter(url=arr[0]).first()
+
+    return category
 
 
 def get_article(article_id: str) -> Optional[dict]:

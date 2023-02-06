@@ -30,7 +30,15 @@ urlpatterns = [
     path('robots.txt', views.robots),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 
+    path('wortschatz/', views.blog),
+    path('prufungen/', views.blog),
+    path('sprechen/', views.blog),
+    path('horen/', views.blog),
+    path('briefs/', views.blog),
+    path('lesen/', views.blog),
+
     path('article/', views.article),
+    path('subscribe/', views.subscribe),
 
     path('quiz/', include('quiz.urls')),
 

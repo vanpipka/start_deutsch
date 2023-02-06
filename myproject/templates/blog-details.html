@@ -1,0 +1,150 @@
+{% load static %}
+{% load home_extras %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'includes/head.html' %}
+
+<body>
+
+    <!-- Header -->
+    {% include 'includes/header.html' %}
+    <!-- End Header -->
+    <div style="height: 10px"></div>
+    <!-- Blog Details -->
+    <section class="pt-120 pb-120">
+        <div class="container">
+            <div class="row gx-60">
+                <div class="col-lg-8">
+                    <!-- Post Details -->
+                    <article class="post-details text-white">
+                        <!-- Post Header -->
+                        <header class="entry-header">
+
+                            <h1 class="entry-title">{{ article.name }}</h1>
+
+                            <ul class="list-inline list-unstyled entry-meta">
+                                <li>
+                                    <span>Опубликовано: </span>
+                                    <a href="#"><time class="entry-date">{{ article.date|naturalday }}</time></a>
+                                </li>
+                                <li>
+                                    <span>Раздел:</span>
+                                    <a href="{{ article.category.url }}">{{ article.category.name }}</a>
+                                </li>
+                            </ul>
+                        </header>
+                        <!-- End Post Header -->
+
+                        <!-- Post Content -->
+                        <div class="entry-content">
+                            {{article.text|safe}}
+                        </div>
+                        <!-- End Post Content -->
+
+                    </article>
+                    <!-- End Post Details -->
+                    {% if comments %}
+                    <!-- Comments -->
+                    <div class="comments-area section-bg mt-60">
+                        <h3 class="comments-title">Всего комментариев: {{ comments|length }}</h3>
+
+                        <ul class="comment-list">
+                            {% for i in comments %}
+                            <li class="comment">
+                                <!-- Single Comment -->
+                                <article class="single-comment media">
+
+                                    <!-- Comment Content -->
+                                    <div class="comment-content media-body">
+                                        <div class="d-flex align-items-center">
+                                            <h4 class="author_name">{{ i.user.name }}</h4>
+                                            <span class="commented-on">
+                                                <time>{{ i.date|naturalday }}</time>
+                                            </span>
+                                        </div>
+
+                                        <p>{{ i.text }}</p>
+
+                                    </div>
+                                    <!-- End Comment Content -->
+                                </article>
+                                <!-- End Single Comment -->
+                            </li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+                    <!-- End Comments -->
+                    {% endif %}
+                    <!-- Comment Respond -->
+                    {% if user.is_active %}
+                    <div class="comment-respond section-bg mt-60">
+                        <h3 class="comment-reply-title">Написать комментарий</h3>
+
+                        <form action="#" method="post" class="comment-form">
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+                            <div class="row pb-2">
+                                <div class="col-12">
+                                    <textarea  name="text" id="text" class="form-control" required="required"
+                                        placeholder="Ваш комментарий"></textarea>
+                                    {{ form.text.errors }}
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn">
+                                <img src="assets/img/icons/btn-save.svg" alt="" class="svg">
+                                <span>Сохранить комментарий</span>
+                            </button>
+                        </form>
+
+                    </div>
+                    {% endif %}
+
+                    <!-- End Comment Respond -->
+                </div>
+                <div class="col-lg-4">
+                    <!-- Blog Sidebar -->
+                    <div class="blog-sidebar mt-5 mt-lg-0">
+                        <!-- Widget Advertise -->
+                        <div class="widget widget_advertise">
+                            <!-- Yandex.RTB R-A-2104703-3 -->
+                            <div id="yandex_rtb_R-A-2104703-3"></div>
+                            <script>window.yaContextCb.push(()=>{
+                              Ya.Context.AdvManager.render({
+                                renderTo: 'yandex_rtb_R-A-2104703-3',
+                                blockId: 'R-A-2104703-3'
+                              })
+                            })</script>
+                            <!-- /Yandex.RTB R-A-2104703-3 -->
+                        </div>
+                        <!-- End Widget Advertise -->
+
+                        <!-- Widget Categories -->
+                        <div class="widget widget_categories">
+                            <h3 class="widget widget-title">Разделы</h3>
+
+                            <ul>
+                                {% for i in categories %}
+                                    <li><a href="/{{ i.url }}">{{ i.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <!-- End Widget Categories -->
+
+                    </div>
+                    <!-- End Blog Sidebar -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Blog Details -->
+
+    {% include "includes/footer.html" %}
+
+</body>
+
+</html>

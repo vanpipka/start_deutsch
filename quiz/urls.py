@@ -21,7 +21,7 @@ urlpatterns = [
     path('test/', views.test),
     path('new/', views.new_test),
     path('category/', views.choosing_category),
-    path('words', views.words_test),
+    path('words/', views.words_test),
 
     # API
     path('api/getquestions/', views.api_get_questions),

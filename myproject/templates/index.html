@@ -1,4 +1,6 @@
 {% load static %}
+{% load home_extras %}
+{% load humanize %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +58,7 @@
                                 <a href="/horen/">
                                     <div class="single-product style--three">
                                         <div class="product-img">
-                                            <img src="http://127.0.0.1:8000/static/img/media/deutsch/cat.png" alt="">
+                                            <img src="/static/img/media/deutsch/cat.png" alt="">
                                         </div>
 
                                         <!-- Product Content -->
@@ -86,7 +88,7 @@
                                 <a href="/lesen/">
                                     <div class="single-product style--three">
                                         <div class="product-img">
-                                            <img src="http://127.0.0.1:8000/static/img/media/deutsch/owl.png" alt="">
+                                            <img src="/static/img/media/deutsch/owl.png" alt="">
                                         </div>
 
                                         <!-- Product Content -->
@@ -119,20 +121,20 @@
                         <div class="row">
                             <div class="col col-12 mb-3">
                                 <!-- Collection -->
-                                <a href="collection.html" class="single-collection" data-count="12">
+                                <a href="/briefs/" class="single-collection" data-count="12">
                                     <div class="collection-img">
                                         <img src="/static/img/media/deutsch/dog.png" style="width: 39px">
                                     </div>
                                     <div class="content">
                                         <h5>Brief</h5>
-                                        <span>Примеры писем</span>
+                                        <span>Примеры писем по темам</span>
                                     </div>
                                 </a>
                                 <!-- End Collection -->
                             </div>
                             <div class="col col-12 mb-3">
                                 <!-- Collection -->
-                                <a href="collection.html" class="single-collection" data-count="12">
+                                <a href="/sprechen/" class="single-collection" data-count="12">
                                     <div class="collection-img">
                                         <img src="/static/img/media/deutsch/duck.png" style="width: 39px">
                                     </div>
@@ -145,7 +147,7 @@
                             </div>
                             <div class="col col-12 mb-3">
                                 <!-- Collection -->
-                                <a href="collection.html" class="single-collection" data-count="12">
+                                <a href="/prufungen/" class="single-collection" data-count="12">
                                     <div class="collection-img">
                                         <img src="/static/img/media/deutsch/gethe.png" style="width: 39px">
                                     </div>
@@ -158,7 +160,7 @@
                             </div>
                             <div class="col col-12 mb-3">
                                 <!-- Collection -->
-                                <a href="collection.html" class="single-collection" data-count="12">
+                                <a href="/wortschatz/" class="single-collection" data-count="12">
                                     <div class="collection-img">
                                         <img src="/static/img/media/deutsch/bears.png" style="width: 39px">
                                     </div>
@@ -194,13 +196,13 @@
                 {% for o in articles %}
                     <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
                         <!-- Collection -->
-                        <a href="/article?id={{o.id}}" class="single-collection" data-count="01">
+                        <a href="{{ o.url }}" class="single-collection" data-count="01">
                             <div class="collection-img">
-                                <img src="{{o.category.img_url}}" style="width: 39px">
+                                <img src="{{o.category.image}}" style="width: 39px">
                             </div>
                             <div class="content">
                                 <h5>{{o.name}}</h5>
-                                <span>{{o.date|date:"d-m-Y"}}</span>
+                                <span>{{o.date|naturalday}}</span>
                             </div>
                         </a>
                         <!-- End Collection -->
@@ -528,150 +530,7 @@
     </section>
     <!-- End Support Center -->
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-main">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-2 col-sm-6">
-                        <!-- Widget Nav Menu -->
-                        <div class="widget widget_nav_menu">
-                            <h4 class="widget_title">My Account</h4>
-                            <ul>
-                                <li><a href="profile.html">Profile</a></li>
-                                <li><a href="author.html">Author</a></li>
-                                <li><a href="collection.html">My Collections</a></li>
-                                <li><a href="author.html">Settings</a></li>
-                                <li><a href="activity.html">Activity</a></li>
-                            </ul>
-                        </div>
-                        <!-- End Widget Nav Menu -->
-                    </div>
-                    <div class="col-xl-3 col-sm-6">
-                        <!-- Widget Nav Menu -->
-                        <div class="widget widget_nav_menu">
-                            <h4 class="widget_title">Marketplace</h4>
-                            <div class="footer-list-wrap">
-                                <ul>
-                                    <li><a href="explore.html">All NFTs</a></li>
-                                    <li><a href="explore.html">Trading Paint</a></li>
-                                    <li><a href="explore.html">Art Painting</a></li>
-                                    <li><a href="explore.html">Virtual Paints</a></li>
-                                    <li><a href="explore.html">Collectibles</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="contact.html">Terms of Service</a></li>
-                                    <li><a href="contact.html">Privacy Policy</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- End Widget Nav Menu -->
-                    </div>
-                    <div class="col-xl-3 col-sm-6">
-                        <!-- Widget Newsletter -->
-                        <div class="widget widget_newsletter">
-                            <h4 class="widget_title">Newsletter</h4>
-
-                            <form
-                                action="https://themelooks.us13.list-manage.com/subscribe/post?u=79f0b132ec25ee223bb41835f&id=f4e0e93d1d"
-                                class="newslatter-form">
-                                <div class="theme-input-group">
-                                    <input class="form-control" type="email" placeholder="Enter Your Email...">
-                                    <button type="submit" class="submit-btn btn"><img src="/static/img/icons/mail.svg"
-                                            alt="" class="svg"> Signup Now</button>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- End Widget Newsletter -->
-                    </div>
-                    <div class="col-xl-4 col-sm-6">
-                        <!-- Widget About -->
-                        <div class="widget text-center text-white widget_about">
-                            <img src="/static/img/footer-logo-light.svg" alt="" class="svg footer-logo">
-                            <p>The anefty first large digital marketplace crypto collectibles & non fungible token buy
-                                sell & discover digital /static.</p>
-
-                            <!-- Socials -->
-                            <div class="socials d-flex justify-content-center align-items-center">
-                                <a href="https://www.twitter.com/" target="_blank"><img
-                                        src="/static/img/icons/twitter-round.svg" alt="" class="svg"></a>
-                                <a href="https://www.instagram.com/" target="_blank"><img
-                                        src="/static/img/icons/instagram-round.svg" alt="" class="svg"></a>
-                                <a href="https://www.pinterest.com/" target="_blank"><img
-                                        src="/static/img/icons/pinterest.svg" alt="" class="svg"></a>
-                                <a href="https://www.whatsapp.com/" target="_blank"><img
-                                        src="/static/img/icons/whatsapp.svg" alt="" class="svg"></a>
-                            </div>
-                            <!-- End Socials -->
-                        </div>
-                        <!-- End Widget About -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <!-- CopyRight Content -->
-                        <div class="copyright-content title-color text-center">
-                            © 2018 - <span class="currentYear">2022</span> <a
-                                href="https://www.themelooks.com/">Themelooks</a> Networks, Inc. All Right
-                            Reserved.
-                        </div>
-                        <!-- End CopyRight Content -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- End Footer -->
-
-    <!-- Back to Top Button -->
-    <a href="#" class="back-to-top">
-        <i class="fas fa-long-arrow-alt-up"></i>
-    </a>
-    <!-- End Back to Top Button -->
-
-
-    <!-- ======= jQuery Library ======= -->
-    <script src="/static/js/jquery.min.js"></script>
-
-    <!-- ======= Bootstrap Bundle JS ======= -->
-    <script src="/static/js/bootstrap.bundle.min.js"></script>
-
-    <!-- ======= Particles JS ======= -->
-    <script src="/static/plugins/particles/particles.min.js"></script>
-
-    <!-- ======= Menu JS ======= -->
-    <script src=" /static/js/menu.min.js"></script>
-
-    <!-- ======= Swiper JS ======= -->
-    <script src="/static/plugins/swiper/swiper-bundle.min.js"></script>
-
-    <!-- ======= Magnific Popup JS ======= -->
-    <script src="/static/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
-
-    <!-- ======= Countdown JS ======= -->
-    <script src="/static/plugins/countdown/countdown.min.js"></script>
-
-    <!-- ======= Nice select JS ======= -->
-    <script src="/static/plugins/nice-select/jquery.nice-select.min.js"></script>
-
-    <!-- ======= Isotope JS ======= -->
-    <script src="/static/plugins/Isotope/isotope.pkgd.js"></script>
-
-    <!-- ======= Wayoints JS ======= -->
-    <script src="/static/plugins/counterup/waypoints.min.js"></script>
-
-    <!-- ======= CounterUp JS ======= -->
-    <script src="/static/plugins/counterup/jquery.counterup.min.js"></script>
-
-    <!-- ======= Main JS ======= -->
-    <script src="/static/js/main.js"></script>
-
-    <!-- ======= Custom JS ======= -->
-    <script src="/static/js/custom.js"></script>
+    {% include "includes/footer.html" %}
 </body>
 
 </html>
