@@ -9,3 +9,4 @@ quiz/migrations/
 db.sqlite3
 db_1.sqlite3
 venv/
+settings.py
