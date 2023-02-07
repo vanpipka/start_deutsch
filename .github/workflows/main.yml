@@ -2,7 +2,7 @@ name: Demo
 on: workflow_dispatch
 jobs:
   print:
-    runs-on: ubuntu-20.04
+    runs-on: start-deutsch
     steps:
       - name: Print
         run: echo Hello!
