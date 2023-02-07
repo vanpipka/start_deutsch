@@ -8,6 +8,14 @@ jobs:
         run: |
           cd /home/start-deutsch/start-deutsch/start_deutsch/
           git pull
+  install:
+    steps:
+      - name: set folder and install
+        run: |
+          cd /home/start-deutsch/start-deutsch/
+          source venv/bin/activate
+          cd start_deutsch 
+          pip install -r requirements.txt
   migrations:
     needs: pull
     runs-on: start-deutsch
