@@ -2,12 +2,12 @@ name: Demo
 on: workflow_dispatch
 jobs:
   pull:
-    runs-on: start-deutsch
+    runs-on: push
     steps:
       - name: set folder
         run: cd /home/start-deutsch/start-deutsch/start_deutsch/
       - name: pull
-        run: git pull
+        run: pwd
   migrations:
     needs: pull
     runs-on: start-deutsch
