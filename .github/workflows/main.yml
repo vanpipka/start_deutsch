@@ -4,16 +4,16 @@ jobs:
   pull:
     runs-on: start-deutsch
     steps:
-      - name: set folder
+      - name: set folder and pull
         run: cd /home/start-deutsch/start-deutsch/start_deutsch/
-      - name: pull
-        run: pwd
+          |git pull main
   migrations:
     needs: pull
     runs-on: start-deutsch
     steps:
       - name: makemigrations
-        run: python manage.py makemigrations
+        run: cd /home/start-deutsch/start-deutsch/start_deutsch/ 
+          |python manage.py makemigrations
       - name: migrate
         run: python manage.py migrate
 
