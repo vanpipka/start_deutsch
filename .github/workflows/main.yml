@@ -7,7 +7,7 @@ jobs:
       - name: set folder
         run: cd /home/start-deutsch/start-deutsch/start_deutsch/
       - name: pull
-        run: git pull master
+        run: git pull
   migrations:
     needs: pull
     runs-on: start-deutsch
