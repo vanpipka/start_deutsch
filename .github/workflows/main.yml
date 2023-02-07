@@ -12,12 +12,11 @@ jobs:
     needs: pull
     runs-on: start-deutsch
     steps:
-      - name: makemigrations
+      - name: migrations
         run: |
           cd /home/start-deutsch/start-deutsch/
           source venv/bin/activate
           cd start_deutsch        
           python manage.py makemigrations
-      - name: migrate
-        run: python manage.py migrate
+          python manage.py migrate
 
