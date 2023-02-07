@@ -1,8 +1,8 @@
 name: Demo
-on: workflow_dispatch
+on: push
 jobs:
   pull:
-    runs-on: push
+    runs-on: start-deutsch
     steps:
       - name: set folder
         run: cd /home/start-deutsch/start-deutsch/start_deutsch/
