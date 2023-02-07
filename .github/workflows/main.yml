@@ -9,6 +9,8 @@ jobs:
           cd /home/start-deutsch/start-deutsch/start_deutsch/
           git pull
   install:
+    needs: pull
+    runs-on: start-deutsch
     steps:
       - name: set folder and install
         run: |
@@ -17,7 +19,7 @@ jobs:
           cd start_deutsch 
           pip install -r requirements.txt
   migrations:
-    needs: pull
+    needs: install
     runs-on: start-deutsch
     steps:
       - name: migrations
