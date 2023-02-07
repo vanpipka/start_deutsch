@@ -1,8 +1,19 @@
 name: Demo
 on: workflow_dispatch
 jobs:
-  print:
+  pull:
     runs-on: start-deutsch
     steps:
-      - name: Print
-        run: echo Hello!
+      - name: set folder
+        run: cd /home/start-deutsch/start-deutsch/start_deutsch/
+      - name: pull
+        run: git pull master
+  migrations:
+    needs: pull
+    runs-on: start-deutsch
+    steps:
+      - name: makemigrations
+        run: python manage.py makemigrations
+      - name: migrate
+        run: python manage.py migrate
+
