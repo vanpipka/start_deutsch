@@ -1,0 +1,244 @@
+loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid #FFF;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+@keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+.ll-repetition__text{
+            color: #fff;
+            font-size: 36px;
+            font-stretch: normal;
+            font-style: normal;
+            font-weight: 400;
+            letter-spacing: normal;
+            line-height: normal;
+            text-align: center;
+        }
+
+.ll-repetition__words-left{
+            align-items: center;
+            -webkit-animation-delay: 0s;
+            animation-delay: 0s;
+            -webkit-animation-duration: .2s;
+            animation-duration: .2s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            -webkit-animation-iteration-count: 1;
+            animation-iteration-count: 1;
+            -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+            background-position: 50%;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-size: 100%;
+            background-size: auto;
+            border: 1px solid hsla(0,0%,100%,.5);
+            border-radius: 50%;
+            display: inline-flex;
+            flex-direction: column;
+            height: 100px;
+            justify-content: center;
+            margin-bottom: 40px;
+            transition: all .2s ease;
+            width: 100px;
+        }
+
+/* line 149, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.button-group-area .genric-btn:last-child {
+  margin-right: 0;
+}
+
+/* line 155, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn {
+  display: inline-block;
+  outline: none;
+  line-height: 40px;
+  padding: 0 30px;
+  font-size: .8em;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+/* line 166, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn:focus {
+  outline: none;
+}
+
+/* line 169, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.e-large {
+  padding: 0 40px;
+  line-height: 50px;
+}
+
+/* line 173, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.large {
+  line-height: 45px;
+}
+
+/* line 176, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.medium {
+  line-height: 30px;
+}
+
+/* line 179, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.small {
+  line-height: 25px;
+}
+
+/* line 257, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.info {
+  color: #fff;
+  background: #38a4ff;
+  border: 1px solid transparent;
+}
+
+/* line 261, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.info:hover {
+  color: #38a4ff;
+  border: 1px solid #38a4ff;
+  background: #fff;
+}
+
+/* line 267, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.info-border {
+  color: #38a4ff;
+  border: 1px solid #38a4ff;
+  background: #fff;
+}
+
+/* line 271, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.info-border:hover {
+  color: #fff;
+  background: #38a4ff;
+  border: 1px solid transparent;
+}
+
+/* line 199, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.default {
+  color: #415094;
+  background: #f9f9ff;
+  border: 1px solid transparent;
+}
+
+/* line 203, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.default:hover {
+  border: 1px solid #f9f9ff;
+  background: #fff;
+}
+
+/* line 208, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.default-border {
+  border: 1px solid #f9f9ff;
+  background: #fff;
+}
+
+/* line 211, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.default-border:hover {
+  color: #415094;
+  background: #f9f9ff;
+  border: 1px solid transparent;
+}
+
+/* line 217, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.primary {
+  color: #fff;
+  background: #ff5e13;
+  border: 1px solid transparent;
+}
+
+/* line 221, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.primary:hover {
+  color: #ff5e13;
+  border: 1px solid #ff5e13;
+  background: #fff;
+}
+
+/* line 227, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.primary-border {
+  color: #ff5e13;
+  border: 1px solid #ff5e13;
+  background: #fff;
+}
+
+/* line 231, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.primary-border:hover {
+  color: #fff;
+  background: #ff5e13;
+  border: 1px solid transparent;
+}
+
+/* line 237, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.success {
+  color: #fff;
+  background: #4cd3e3;
+  border: 1px solid transparent;
+}
+
+/* line 241, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.success:hover {
+  color: #4cd3e3;
+  border: 1px solid #4cd3e3;
+  background: #fff;
+}
+
+/* line 247, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.success-border {
+  color: #4cd3e3;
+  border: 1px solid #4cd3e3;
+  background: #fff;
+}
+
+/* line 251, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.success-border:hover {
+  color: #fff;
+  background: #4cd3e3;
+  border: 1px solid transparent;
+}
+
+/* line 297, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.danger {
+  color: #fff;
+  background: #f44a40;
+  border: 1px solid transparent;
+}
+
+/* line 301, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.danger:hover {
+  color: #f44a40;
+  border: 1px solid #f44a40;
+  background: #fff;
+}
+
+/* line 307, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.danger-border {
+  color: #f44a40;
+  border: 1px solid #f44a40;
+  background: #fff;
+}
+
+/* line 311, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
+.genric-btn.danger-border:hover {
+  color: #fff;
+  background: #f44a40;
+  border: 1px solid transparent;
+}
