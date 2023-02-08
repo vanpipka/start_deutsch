@@ -65,6 +65,7 @@ def login(request):
             form = UserCreationForm(form_copy)
 
         if form.is_valid():
+
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
 
