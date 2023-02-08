@@ -160,7 +160,7 @@
                     make_words_quiz_step_1();
                 }
             }
-            xhr.open("GET", "{% get_attribute 'DEUTSCH_HOME_PAGE' %}quiz/api/get_random_words?count=30", true);
+            xhr.open("GET", "/quiz/api/get_random_words?count=30", true);
             xhr.send();
         }
 
@@ -277,7 +277,7 @@
             formData.append("csrfmiddlewaretoken", document.getElementsByName("csrfmiddlewaretoken")[0].value);
 
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "{% get_attribute 'DEUTSCH_HOME_PAGE' %}quiz/api/set_words_result", true);
+            xhr.open("POST", "/quiz/api/set_words_result", true);
             xhr.send(formData);
 
         }
