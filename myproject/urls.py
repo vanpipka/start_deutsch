@@ -40,6 +40,11 @@ urlpatterns = [
     path('article/', views.article),
     path('subscribe/', views.subscribe),
 
+    # accounts
+    path('accounts/login/', views.login),
+    path('accounts/logout/', views.logoff),
+    path('accounts/profile/', views.profile),
+
     path('quiz/', include('quiz.urls')),
 
     # main

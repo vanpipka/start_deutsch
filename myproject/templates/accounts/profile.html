@@ -1,0 +1,2465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+{% load home_extras %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'includes/head.html' %}
+
+<body>
+
+    <!-- Header -->
+    {% include 'includes/header.html' %}
+    <!-- End Header -->
+
+    <!-- Author -->
+    <div class="author-area sep-bottom">
+        <div class="author-cover author-cover-edit" data-bg-img="/static/img/bg/author-cover.png">
+            <span class="upload-btn">
+                <img src="/static/img/icons/plus.svg" class="svg" alt="">
+                <input type="file" accept="image/*">
+            </span>
+        </div>
+        <div class="author-info">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 d-flex justify-content-center justify-content-lg-start">
+                        <!-- Profile -->
+                        <div class="author-profile text-center text-white d-inline-block pb-2 pb-lg-4">
+                            <div class="user-avatar">
+                                <img src="/static/img/media/profile-avatar.png" alt="">
+                                <span class="upload-btn">
+                                    <img src="/static/img/icons/plus.svg" class="svg" alt="">
+                                    <input type="file" accept="image/*">
+                                </span>
+                            </div>
+
+                            <h5 class="user_name text-white">AneftyPunks</h5>
+                            <p>Joined December 2022</p>
+                        </div>
+                        <!-- End Profile -->
+                    </div>
+                    <div class="col-lg-6">
+                        <div
+                            class="d-flex flex-wrap align-items-center mt-10 justify-content-center justify-content-lg-end mb-3 mb-lg-0">
+                            <!-- Copy Clipboard -->
+                            <div class="copy-clipboard-wrap mr-10 mb-10">
+                                <input class="form-control" id="get-link" type="text" value="69b9ebde0178k7O7&exportsw"
+                                    readonly>
+
+                                <!-- Copy Button -->
+                                <a href="#" id="copy-link-btn">
+                                    <img src="/static/img/icons/copy-icon.svg" alt="" class="svg">
+                                </a>
+                                <!-- End Copy Button -->
+                            </div>
+                            <!-- End Copy Clipboard -->
+
+                            <!-- Share -->
+                            <div class="dropdown mr-10 mb-10">
+                                <button class="btn-circle style--two dropdown-toggle" data-bs-toggle="dropdown">
+                                    <img src="/static/img/icons/share-grey.svg" alt="" class="svg">
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" target="_blank" href="https://www.facebook.com/"><img
+                                                src="/static/img/icons/facebook.svg" alt=""> Share on Facebook</a>
+                                    </li>
+                                    <li><a class="dropdown-item" target="_blank" href="https://www.twitter.com/"><img
+                                                src="/static/img/icons/twitter.svg" alt=""> Share on Twitter</a></li>
+                                    <li><a class="dropdown-item" target="_blank" href="https://www.Instagram.com/"><img
+                                                src="/static/img/icons/instagram.svg" alt=""> Share on Instagram</a>
+                                    </li>
+                                    <li><a class="dropdown-item" target="_blank" href="https://www.linkedin.com/"><img
+                                                src="/static/img/icons/linkedin.svg" alt=""> Share on Linkedin</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End Share -->
+
+                            <a href="explore.html" class="btn btn-border style--two fz-13 mr-10 mb-10">Follow</a>
+
+                            <!-- Options -->
+                            <div class="dropdown mb-10">
+                                <button class="btn-circle style--two dropdown-toggle" data-bs-toggle="dropdown">
+                                    <img src="/static/img/icons/option-icon.svg" alt="" class="svg">
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" target="_blank" href="#">Report</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End Options -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Author -->
+
+    <!-- Profile -->
+    <section class="pt-120 pb-120">
+        <div class="container">
+            <div class="row mb-50">
+                <div class="col-xl-9 order-1 order-xl-0">
+                    <!-- Tab Buttons -->
+                    <ul class="nav tab-buttons justify-content-center justify-content-xl-start">
+                        <li>
+                            <button class="active select-rounded text-uppercase lg" data-bs-toggle="tab"
+                                data-bs-target="#collected">Collected <span>3</span></button>
+                        </li>
+                        <li>
+                            <button class="select-rounded text-uppercase lg" data-bs-toggle="tab"
+                                data-bs-target="#created">Created <span>9</span></button>
+                        </li>
+                        <li>
+                            <button class="select-rounded text-uppercase lg" data-bs-toggle="tab"
+                                data-bs-target="#favorited">Favorited <span>6</span></button>
+                        </li>
+                        <li>
+                            <button class="select-rounded text-uppercase lg" data-bs-toggle="tab"
+                                data-bs-target="#hidden">Hidden <span>12</span></button>
+                        </li>
+                        <li>
+                            <select class="select-rounded lg">
+                                <option value="offers">Offers</option>
+                                <option value="offers_received">Offers received</option>
+                                <option value="offers_made">Offers made</option>
+                            </select>
+                        </li>
+                    </ul>
+                    <!-- End Tab Buttons -->
+                </div>
+                <div class="col-xl-3 order-0 order-xl-1 mb-4 mb-xl-0">
+                    <!-- Search Form -->
+                    <form class="search-form style--two" action="#">
+                        <div class="form-group ms-auto me-auto me-xl-0 mw-100">
+                            <input type="text" class="form-control mb-0" placeholder="Search item…">
+                            <button type="submit">
+                                <img src="/static/img/icons/search.svg" class="svg" alt="">
+                            </button>
+                        </div>
+                    </form>
+                    <!-- End Search Form -->
+                </div>
+            </div>
+
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="collected">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product4.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Colorful Abstract Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.69 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product1.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Liquid Forest Princess</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>03.66 ETH</h6>
+
+                                            <div class="countdown-wrap">
+                                                <ul class="countdown">
+                                                    <li>
+                                                        <span class="hours">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="minutes">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="seconds">00</span>
+                                                    </li>
+                                                    <li class="text-uppercase ms-1">left</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share
+                                                            on Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-sm btn-border">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product6.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Animal Girl Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>1.89 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product7.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Animal Girl Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>3.99 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product8.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Animal Girl Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>1.79 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product2.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>The Girl With The Firefly</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.88 ETH</h6>
+
+                                            <div class="countdown-wrap">
+                                                <ul class="countdown">
+                                                    <li>
+                                                        <span class="hours">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="minutes">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="seconds">00</span>
+                                                    </li>
+                                                    <li class="text-uppercase ms-1">left</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share
+                                                            on Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product3.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Synthase On Modern Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.84 ETH</h6>
+
+                                            <div class="countdown-wrap">
+                                                <ul class="countdown">
+                                                    <li>
+                                                        <span class="hours">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="minutes">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="seconds">00</span>
+                                                    </li>
+                                                    <li class="text-uppercase ms-1">left</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share
+                                                            on Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product5.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Liquid Forest Princess</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.89 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product17.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Colorful Abstract Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.69 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-12 d-flex justify-content-center mt-30">
+                            <a href="#" class="btn"><img src="/static/img/icons/btn-loadmore.svg" alt="" class="svg">
+                                Load
+                                More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="created">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product1.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Liquid Forest Princess</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>03.66 ETH</h6>
+
+                                            <div class="countdown-wrap">
+                                                <ul class="countdown">
+                                                    <li>
+                                                        <span class="hours">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="minutes">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="seconds">00</span>
+                                                    </li>
+                                                    <li class="text-uppercase ms-1">left</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share
+                                                            on Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-sm btn-border">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product4.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Colorful Abstract Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.69 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product6.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Animal Girl Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>1.89 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product7.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Animal Girl Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>3.99 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product8.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Animal Girl Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>1.79 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product2.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>The Girl With The Firefly</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.88 ETH</h6>
+
+                                            <div class="countdown-wrap">
+                                                <ul class="countdown">
+                                                    <li>
+                                                        <span class="hours">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="minutes">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="seconds">00</span>
+                                                    </li>
+                                                    <li class="text-uppercase ms-1">left</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share
+                                                            on Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product3.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Synthase On Modern Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.84 ETH</h6>
+
+                                            <div class="countdown-wrap">
+                                                <ul class="countdown">
+                                                    <li>
+                                                        <span class="hours">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="minutes">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="seconds">00</span>
+                                                    </li>
+                                                    <li class="text-uppercase ms-1">left</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share
+                                                            on Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product5.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Liquid Forest Princess</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.89 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product17.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Colorful Abstract Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.69 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-12 d-flex justify-content-center mt-30">
+                            <a href="#" class="btn"><img src="/static/img/icons/btn-loadmore.svg" alt="" class="svg">
+                                Load
+                                More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="favorited">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product6.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Animal Girl Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>1.89 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product4.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Colorful Abstract Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.69 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product1.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Liquid Forest Princess</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>03.66 ETH</h6>
+
+                                            <div class="countdown-wrap">
+                                                <ul class="countdown">
+                                                    <li>
+                                                        <span class="hours">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="minutes">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="seconds">00</span>
+                                                    </li>
+                                                    <li class="text-uppercase ms-1">left</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share
+                                                            on Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-sm btn-border">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product7.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Animal Girl Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>3.99 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product8.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Animal Girl Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>1.79 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product2.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>The Girl With The Firefly</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.88 ETH</h6>
+
+                                            <div class="countdown-wrap">
+                                                <ul class="countdown">
+                                                    <li>
+                                                        <span class="hours">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="minutes">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="seconds">00</span>
+                                                    </li>
+                                                    <li class="text-uppercase ms-1">left</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share
+                                                            on Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product3.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Synthase On Modern Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.84 ETH</h6>
+
+                                            <div class="countdown-wrap">
+                                                <ul class="countdown">
+                                                    <li>
+                                                        <span class="hours">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="minutes">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="seconds">00</span>
+                                                    </li>
+                                                    <li class="text-uppercase ms-1">left</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share
+                                                            on Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product5.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Liquid Forest Princess</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.89 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product17.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Colorful Abstract Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.69 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-12 d-flex justify-content-center mt-30">
+                            <a href="#" class="btn"><img src="/static/img/icons/btn-loadmore.svg" alt="" class="svg">
+                                Load
+                                More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="hidden">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product7.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Animal Girl Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>3.99 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product4.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Colorful Abstract Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.69 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product1.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Liquid Forest Princess</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>03.66 ETH</h6>
+
+                                            <div class="countdown-wrap">
+                                                <ul class="countdown">
+                                                    <li>
+                                                        <span class="hours">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="minutes">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="seconds">00</span>
+                                                    </li>
+                                                    <li class="text-uppercase ms-1">left</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share
+                                                            on Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-sm btn-border">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product6.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Animal Girl Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>1.89 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product8.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Animal Girl Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>1.79 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product2.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>The Girl With The Firefly</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.88 ETH</h6>
+
+                                            <div class="countdown-wrap">
+                                                <ul class="countdown">
+                                                    <li>
+                                                        <span class="hours">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="minutes">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="seconds">00</span>
+                                                    </li>
+                                                    <li class="text-uppercase ms-1">left</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share
+                                                            on Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product3.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Synthase On Modern Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.84 ETH</h6>
+
+                                            <div class="countdown-wrap">
+                                                <ul class="countdown">
+                                                    <li>
+                                                        <span class="hours">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="minutes">00</span>
+                                                    </li>
+                                                    <li class="ms-1 me-1"> : </li>
+                                                    <li>
+                                                        <span class="seconds">00</span>
+                                                    </li>
+                                                    <li class="text-uppercase ms-1">left</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share
+                                                            on Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product5.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Liquid Forest Princess</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.89 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product -->
+                            <div class="single-product mb-30">
+                                <img src="/static/img/product/product17.png" alt="">
+
+                                <!-- Product Content -->
+                                <div class="product-content">
+                                    <div class="product-top">
+                                        <h5>Colorful Abstract Painting</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h6>0.69 ETH</h6>
+                                            <h6>2 to 100</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-bottom">
+                                        <!-- Button Group -->
+                                        <div class="button-group">
+                                            <a href="#" class="btn-circle love-react mr-10"></a>
+
+                                            <div class="dropdown mr-10">
+                                                <button class="btn-circle btn-border dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <img src="/static/img/icons/share.svg" alt="" class="svg">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.facebook.com/"><img
+                                                                src="/static/img/icons/facebook.svg" alt=""> Share on
+                                                            Facebook</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.twitter.com/"><img
+                                                                src="/static/img/icons/twitter.svg" alt=""> Share on
+                                                            Twitter</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.Instagram.com/"><img
+                                                                src="/static/img/icons/instagram.svg" alt=""> Share on
+                                                            Instagram</a></li>
+                                                    <li><a class="dropdown-item" target="_blank"
+                                                            href="https://www.linkedin.com/"><img
+                                                                src="/static/img/icons/linkedin.svg" alt=""> Share on
+                                                            Linkedin</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <a href="item-details.html" class="btn btn-border btn-sm">
+                                                <img src="/static/img/icons/judge-icon.svg" alt="" class="svg">
+                                                Place Bid
+                                            </a>
+                                        </div>
+                                        <!-- End Button Group -->
+                                    </div>
+                                </div>
+                                <!-- End Product Content -->
+                            </div>
+                            <!-- End Single Product -->
+                        </div>
+                        <div class="col-lg-12 d-flex justify-content-center mt-30">
+                            <a href="#" class="btn"><img src="/static/img/icons/btn-loadmore.svg" alt="" class="svg">
+                                Load
+                                More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Profile -->
+
+    {% include "includes/footer.html" %}
+
+</body>
+
+</html>

@@ -1,17 +1,11 @@
 from django.http import HttpResponse, JsonResponse
 from django.http import Http404, HttpResponseNotAllowed, HttpResponseServerError, HttpResponseRedirect
 from django.shortcuts import render
-from services import db_backend, make_subscriber
+from services import db_backend, make_subscriber, accounts
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.middleware import csrf
-
-# Опять же, спасибо django за готовую форму аутентификации.
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordResetForm
-
-# Функция для установки сессионного ключа.
-# По нему django будет определять, выполнил ли вход пользователь.
-from django.contrib.auth import login as auth_login, authenticate, logout
+from django.contrib.auth import logout
 
 
 def robots(request):
@@ -102,4 +96,31 @@ def blog(request):
             "blog.html",
             context=db_backend.get_context_by_category(category)
     )
+
+
+# accounts
+def profile(request):
+
+    if request.user.is_authenticated:
+
+        return accounts.profile(request)
+
+    else:
+        return HttpResponseRedirect("/accounts/login/")
+
+
+def logoff(request):
+
+    if request.user.is_authenticated:
+        logout(request)
+
+    return HttpResponseRedirect("/")
+
+
+def login(request):
+
+    if request.user.is_authenticated:
+        return HttpResponseRedirect("/accounts/profile/")
+
+    return accounts.login(request)
 

@@ -189,30 +189,23 @@ class AdditionalField(models.Model):
 
         return elem
 
-    @staticmethod
-    def set(data):
+    def save_account(self, data: dict) -> dict:
 
-        user = data.get("user", "")
+        user = data.get("user", None)
 
-        if user == "":
-            return False
+        if not user:
+            return {"error": True, "error_message": "User not found"}
 
-        elem = AdditionalField.get(user)
-
-        if elem is None:
-            elem = AdditionalField()
-            elem.user = user
-
-        elem.email = data.get("email", "")
-        elem.name = data.get("name", "")
-        elem.phone = data.get("phone", "")
+        self.user = user
+        self.email = data.get("email", "")
+        self.name = data.get("name", "")
+        self.phone = data.get("phone", "")
 
         try:
-            elem.save()
-            return True
+            self.save()
+            return {}
         except Exception as e:
-            print(e)
-            return False
+            return {"error": True, "error_message": f"{e}"}
 
     def get_as_dict(self) -> dict:
 

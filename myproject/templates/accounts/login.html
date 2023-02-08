@@ -1,0 +1,88 @@
+{% load static %}
+{% load home_extras %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'includes/head.html' %}
+
+<body>
+
+    <!-- Header -->
+    {% include 'includes/header.html' %}
+    <!-- End Header -->
+
+    <!-- Login -->
+    <div class="py-5 d-flex align-items-center" style="min-height: calc(100vh - 100px);"
+        data-bg-img="/static/img/bg/bg-design-shape.png">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-lg-7 col-md-10">
+                    <!-- Card -->
+                    <div class="card login-register-card">
+                        <div class="card-body">
+                            <div class="text-center mb-5">
+                                <h2>Вход</h2>
+                            </div>
+                            <form action="#">
+                                {% csrf_token %}
+
+
+                                <div id="auth_error" class="alert alert-danger" role="alert" hidden>
+                                </div>
+                                <div id="f_login">
+
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="phoneNumber" name="username" required  class="tel form-control form-control-lg" placeholder="Номер телефона"/>
+                                    </div>
+
+                                    <!-- Add a container for reCaptcha -->
+                                    <div id="recaptcha-container" class="m-3 recaptcha-container"></div>
+                                    <div class="pt-1 mb-4 justify-content-end">
+                                        <button class="btn btn-info btn-lg btn-block" type="button" id="getVerificationCodeBtn" onclick="submitPhoneNumberAuth()">Получить код</button>
+                                    </div>
+
+                                </div>
+
+                                <div id="s_login" class="mt-3" hidden>
+
+                                    <div class="form-outline mb-4 mt-3">
+                                        <input type="text" id="code" name="password" class="form-control form-control-lg" placeholder="Код из смс"/>
+                                    </div>
+
+                                    <div class="pt-1 mb-4">
+                                        <button type="button" class="btn btn-info btn-lg btn-block" onclick="submitPhoneNumberAuthCode()" id="confirm-code" style="width: 100%;">
+                                            <img id="loader" src="/static/img/loader.gif" style="max-height: 30px; vertical-align: middle" hidden></img>
+                                                ПРОВЕРИТЬ КОД
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Login -->
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-long-arrow-alt-up"></i>
+    </a>
+    <!-- End Back to Top Button -->
+
+
+    {% include "includes/footer.html" %}
+
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-auth.js"></script>
+    <script src="/static/js/firebase-auth.js"></script>
+    <!--=== Phone masked ===-->
+    <script src="/static/js/js-inputmask.js"></script>
+
+</body>
+
+</html>
