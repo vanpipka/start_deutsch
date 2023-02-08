@@ -28,5 +28,10 @@ jobs:
           source venv/bin/activate
           cd start_deutsch        
           python manage.py makemigrations
-          python manage.py migrate
-
+          python manage.py
+  restart:
+    needs: migrations
+    runs-on: start-deutsch
+    steps:
+      - name: migrations
+        run: sudo systemctl restart gunicorn
