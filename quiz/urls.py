@@ -18,13 +18,12 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('test/', views.test),
-    path('new/', views.new_test),
-    path('category/', views.choosing_category),
-    path('words/', views.words_test),
+    # path('test/', views.test),
+    # path('category/', views.choosing_category),
+    path('words/', views.words),
 
     # API
-    path('api/getquestions/', views.api_get_questions),
+    path('api/get_questions/', views.api_get_questions),
     path('api/get_random_words', views.api_get_random_words),
     path('api/set_words_result', views.api_set_words_result),
     path('api/get_or_create_topic/', views.api_get_or_create_topic),

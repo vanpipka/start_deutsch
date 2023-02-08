@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from quiz.services import make_new_questions_set, get_or_create_topic, get_random_words, set_words_result
+from services.quiz import make_new_questions_set, get_or_create_topic, get_random_words, set_words_result
 from django.shortcuts import render, redirect
 
 
@@ -11,29 +11,11 @@ def test(request):
 	return response
 
 
-def new_test(request):
-
-	return render(
-		request,
-		'index.html',
-		context={}
-	)
-
-
-def words_test(request):
+def words(request):
 
 	return render(
 		request,
 		'words_test.html',
-		context={}
-	)
-
-
-def choosing_category(request):
-
-	return render(
-		request,
-		'choosing_category.html',
 		context={}
 	)
 
