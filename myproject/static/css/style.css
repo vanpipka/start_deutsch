@@ -1673,7 +1673,7 @@ blockquote cite:after {
 }
 
 .owners {
-  margin-left: 25px;
+  margin-left: 15px;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -3701,7 +3701,6 @@ textarea.form-control {
   background-color: #2c3a55;
   border-radius: 10px;
   margin-top: 30px;
-  padding: 0px 30px;
   position: relative;
 }
 
@@ -3728,36 +3727,8 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 1199px) {
-  .header-main .submenu-button {
-    position: absolute;
-    right: 0;
-    top: 10px;
-    height: 30px;
-    width: 30px;
-    color: inherit;
-    font-size: 14px;
-    z-index: 9999;
-    -webkit-transition: 0.2s ease-in-out;
-    -o-transition: 0.2s ease-in-out;
-    transition: 0.2s ease-in-out;
-  }
-  .header-main .submenu-button:after {
-    font-family: "Font Awesome 5 Free";
-    content: "\f0d7";
-    line-height: 30px;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    font-weight: 900;
-  }
+
   .header-main .submenu-button.submenu-opened:after {
-    content: "\f0d8";
     color: var(--c1);
   }
   .header-main .nav-wrap-inner {
