@@ -55,7 +55,7 @@ def article(request):
         if not article_id:
             raise Http404("Article not found")
 
-        article = db_backend.get_article(article_id)
+        article = db_backend.get_article_by_id(article_id)
 
         if not article:
             raise Http404("Article not found")
@@ -95,6 +95,15 @@ def blog(request):
             request,
             "blog.html",
             context=db_backend.get_context_by_category(category)
+    )
+
+
+def all_articles(request):
+
+    return render(
+            request,
+            "all_articles.html",
+            context=db_backend.get_main_context(request)
     )
 
 

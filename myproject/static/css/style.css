@@ -3313,7 +3313,7 @@ textarea.form-control {
 }
 
 .widget.widget_categories .widget-title {
-  color: var(--white);
+  color: var(--title-color);
 }
 
 .widget.widget_categories ul li {
@@ -3323,7 +3323,7 @@ textarea.form-control {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  color: var(--white);
+  color: var(--title-color);
 }
 
 .widget.widget_categories ul li:not(:last-child) {
@@ -3334,7 +3334,7 @@ textarea.form-control {
 
 .widget.widget_categories ul li a {
   position: relative;
-  color: var(--white);
+  color: #2564A6;
 }
 
 .widget.widget_categories ul li a:hover {

@@ -11,12 +11,7 @@ def get_last_articles(count: int) -> List:
     result = []
 
     for element in Article.objects.all().order_by('-date').select_related("category")[:count]:
-        result.append({
-            "id": element.id,
-            "name": element.name,
-            "date": element.date,
-            "category": Category.get_as_dict(element.category),
-        })
+        result.append(Article.get_as_dict(element))
 
     return result
 
@@ -58,6 +53,20 @@ def get_context_by_category(category: Category) -> dict:
         "keywords": category_info.get("keywords", "")}
 
 
+def get_main_context(request: Request) -> dict:
+
+    category_info = CATEGORY_DATA.get("main", {})
+    page_number = request.GET.get("page", 1)
+
+    return {
+        "pagination": {"count": Article.objects.all().count(), "page_number": page_number},
+        "articles": get_articles_by_page(page_number),
+        "H1": "Все материалы",
+        "description": category_info.get("description", ""),
+        "head": category_info.get("head", ""),
+        "keywords": category_info.get("keywords", "")}
+
+
 def get_category_by_url(request: Request) -> Optional["Category"]:
 
     arr = [i for i in request.path.split("/") if i]
@@ -70,7 +79,20 @@ def get_category_by_url(request: Request) -> Optional["Category"]:
     return category
 
 
-def get_article(article_id: str) -> Optional[dict]:
+def get_articles_by_page(page_number: int) -> List:
+
+    result = []
+    first_order = (page_number-1)*20
+
+    for e in Article.objects.all().order_by('-date')[first_order: first_order+20]:
+        if str(e.id) == '00000000-0000-0000-0000-000000000000':
+            continue
+        result.append(Article.get_as_dict(e))
+
+    return result
+
+
+def get_article_by_id(article_id: str) -> Optional[dict]:
 
     article = Article.get_by_id(article_id)
 

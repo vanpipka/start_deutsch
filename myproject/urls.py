@@ -36,6 +36,7 @@ urlpatterns = [
     path('horen/', views.blog),
     path('briefs/', views.blog),
     path('lesen/', views.blog),
+    path('articles/', views.all_articles),
 
     path('article/', views.article),
     path('subscribe/', views.subscribe),
