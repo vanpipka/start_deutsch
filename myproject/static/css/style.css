@@ -3705,11 +3705,11 @@ textarea.form-control {
   position: relative;
 }
 
-@media only screen and (max-width: 1199px) {
+/*@media only screen and (max-width: 1199px) {
   .header-main .header-inner {
     padding: 10px 20px;
   }
-}
+}*/
 
 .header-main .header-inner:after {
   position: absolute;
@@ -5061,14 +5061,14 @@ textarea.form-control {
 }
 
 .banner-content h1 {
-  font-size: 72px;
+  font-size: 42px;
   margin-bottom: 42px;
   letter-spacing: -3px;
 }
 
 @media only screen and (max-width: 479px) {
   .banner-content h1 {
-    font-size: 48px;
+    font-size: 32px;
   }
 }
 
@@ -5653,12 +5653,13 @@ textarea.form-control {
 .author-area .author-cover {
   height: 420px;
   width: 100%;
-  background-position: center;
+  background-position: left;
 }
 
 @media only screen and (max-width: 767px) {
   .author-area .author-cover {
     height: 300px;
+    background-position: right;
   }
 }
 
