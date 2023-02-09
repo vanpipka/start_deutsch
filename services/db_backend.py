@@ -84,7 +84,7 @@ def get_articles_by_page(page_number: int) -> List:
     result = []
     first_order = (page_number-1)*20
 
-    for e in Article.objects.all().order_by('-date')[first_order: first_order+20]:
+    for e in Article.objects.all().order_by('-date'):  # [first_order: first_order+20]:
         if str(e.id) == '00000000-0000-0000-0000-000000000000':
             continue
         result.append(Article.get_as_dict(e))
