@@ -4995,7 +4995,6 @@ textarea.form-control {
 .banner {
   padding: 260px 0 0px;
   position: relative;
-  z-index: 1;
 }
 
 @media only screen and (max-width: 991px) {
