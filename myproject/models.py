@@ -128,6 +128,10 @@ class Article(models.Model):
 
         try:
             elem = Article.objects.get(id=article_id)
+
+            elem.text.replace("http://start-deutsch.ru/static/deutsch", "/static")
+            elem.save()
+
         except ObjectDoesNotExist:
             elem = None
 
