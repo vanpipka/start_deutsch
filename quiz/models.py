@@ -7,23 +7,6 @@ from myproject.models import Category
 import uuid
 
 
-# Create your models here.
-class Question(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
-    text = models.CharField(max_length=150, default="", blank=True)
-    image = models.ImageField(null=True, blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    part = models.IntegerField(default=0)
-
-
-class Answer(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
-    text = models.CharField(max_length=150, default="", blank=True)
-    image = models.ImageField(null=True, blank=True)
-    itsRight = models.BooleanField(default=False)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-
-
 class Topic(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
     text = models.CharField(max_length=150, default="", blank=True)

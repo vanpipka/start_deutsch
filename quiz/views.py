@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from services.quiz import make_new_questions_set, get_or_create_topic, get_random_words, set_words_result
+from services.quiz import get_or_create_topic, get_random_words, set_words_result
 from django.shortcuts import render, redirect
 
 
@@ -18,16 +18,6 @@ def words(request):
 		'words_test.html',
 		context={}
 	)
-
-
-def api_get_questions(request):
-
-	question_set: list = make_new_questions_set(request)
-
-	response = JsonResponse({'data': question_set})
-	response['Access-Control-Allow-Origin'] = '*'
-
-	return response
 
 
 def api_get_or_create_topic(request):

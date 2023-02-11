@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
-from settings.constants import SECRET_KEY, DATABASES, ALLOWED_HOSTS
+from settings.constants import SECRET_KEY, DATABASES, ALLOWED_HOSTS, DEBUG
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = DEBUG
 
 ALLOWED_HOSTS = ALLOWED_HOSTS
 DEUTSCH_HOME_PAGE = 'http://127.0.0.1:8000/'
@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django.contrib.humanize',
     'myproject',
-    'quiz'
+    'quiz',
+    'exam'
 ]
 
 MIDDLEWARE = [

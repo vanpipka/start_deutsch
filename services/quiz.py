@@ -4,46 +4,10 @@ from typing import List, Optional
 from urllib.request import Request
 
 from django.db.models.fields.files import ImageFieldFile
-from quiz.models import Question, Result, Topic, Word
+from quiz.models import Result, Topic, Word
 from myproject.models import Category
 
 WORDS_COUNT = 758
-
-
-def make_new_questions_set(request: Request) -> List:
-    question_set: list = []
-    category = Category.get_by_id(request.GET.get("category", ""))
-
-    if category is None:
-        return question_set
-
-    question_query = Question.objects.all().filter(category=category)
-
-    for question_obj in question_query:
-
-        question = {'id': question_obj.id,
-                    'text': question_obj.text,
-                    'image': encode_img(question_obj.image)}
-        answers_list = []
-        order = 1
-        answers_query = question_obj.answer_set.all()
-
-        for answer_obj in answers_query:
-
-            answers_list.append({'order': order,
-                                 'id': answer_obj.id,
-                                 'correct': answer_obj.itsRight,
-                                 'text': answer_obj.text,
-                                 'image': encode_img(answer_obj.image)})
-            order += 1
-
-            if answer_obj.itsRight:
-                question['correct'] = answer_obj.id
-
-        question['answers'] = answers_list
-        question_set.append(question)
-
-    return question_set
 
 
 def get_or_create_topic(request: Request) -> dict:

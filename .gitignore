@@ -5,6 +5,7 @@ __pycache__/
 .idea/
 myproject/migrations/
 quiz/migrations/
+exam/migrations/
 
 db.sqlite3
 db_1.sqlite3
