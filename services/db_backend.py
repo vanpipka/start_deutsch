@@ -45,6 +45,7 @@ def get_context_by_category(category: Category) -> dict:
     category_info = CATEGORY_DATA.get(category.url, {})
 
     return {
+        "categories": get_all_category(),
         "category": category,
         "articles": get_articles_by_category(category),
         "H1": category.name,

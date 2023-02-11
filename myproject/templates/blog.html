@@ -43,22 +43,56 @@
     <section class="pt-120 pb-120">
         <div class="container">
             <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                        {% for article in articles %}
 
-                {% for article in articles %}
-
-                    <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
-                        <!-- Collection -->
-                        <a href="{{ article.url }}" class="single-collection" data-count="01" style="background: linear-gradient(45deg, #007bff 0%, #00FFAB 100%);">
-                            <div class="content">
-                                <h5>{{article.name}}</h5>
-                                <p>{{ article.description|cut_text  }}</p>
-                                <span>{{article.date|naturalday}}</span>
-                            </div>
-                        </a>
-                        <!-- End Collection -->
+                        <div class="col-xl-4 col-lg-6 col-sm-6 mt-3">
+                            <!-- Collection -->
+                            <a href="{{ article.url }}" class="single-collection" data-count="01" style="background: linear-gradient(45deg, #007bff 0%, #00FFAB 100%);">
+                                <div class="content">
+                                    <h5>{{article.name}}</h5>
+                                    <p>{{ article.description|cut_text  }}</p>
+                                    <span>{{article.date|naturalday}}</span>
+                                </div>
+                            </a>
+                            <!-- End Collection -->
+                        </div>
+                        {% endfor %}
                     </div>
+                </div>
+                <div class="col-lg-4">
+                    <!-- Blog Sidebar -->
+                    <div class="blog-sidebar mt-5 mt-lg-0">
+                        <!-- Widget Advertise -->
+                        <div class="widget widget_advertise">
+                            <!-- Yandex.RTB R-A-2104703-3 -->
+                            <div id="yandex_rtb_R-A-2104703-3"></div>
+                            <script>window.yaContextCb.push(()=>{
+                              Ya.Context.AdvManager.render({
+                                renderTo: 'yandex_rtb_R-A-2104703-3',
+                                blockId: 'R-A-2104703-3'
+                              })
+                            })</script>
+                            <!-- /Yandex.RTB R-A-2104703-3 -->
+                        </div>
+                        <!-- End Widget Advertise -->
 
-                {% endfor %}
+                        <!-- Widget Categories -->
+                        <div class="widget widget_categories">
+                            <h3 class="widget widget-title">Разделы</h3>
+
+                            <ul>
+                                {% for i in categories %}
+                                    <li><a href="/{{ i.url }}">{{ i.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <!-- End Widget Categories -->
+
+                    </div>
+                    <!-- End Blog Sidebar -->
+                </div>
 
                 <!--<div class="col-lg-12 d-flex justify-content-center mt-30">
                     <a href="#" class="btn"><img src="assets/img/icons/btn-loadmore.svg" alt="" class="svg">
