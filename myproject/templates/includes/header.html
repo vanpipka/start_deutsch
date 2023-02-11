@@ -34,14 +34,13 @@
                                             </ul>
                                         </li>
                                         <li><a href="/quiz/words/">Изучение слов</a></li>
-
                                     </ul>
                                     <!-- End Nav -->
                                 </div>
 
                                 <div class="d-none d-md-flex align-items-center ms-4">
 
-                                    {% if user.is_active %}
+                                    {% if user.is_authenticated %}
                                         <div class="dropdown ml-10">
                                             <a href="#" class="user-avatar dropdown-toggle" data-bs-toggle="dropdown">
                                                 <img src="/static/img/media/user.png" alt="">

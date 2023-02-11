@@ -1,6 +1,7 @@
 from urllib.request import Request
 
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from django.http import HttpResponseServerError, JsonResponse
 from django.middleware import csrf
@@ -33,9 +34,9 @@ def profile(request: Request):
         save_result = user_data.save_account(data)
         if save_result["error"]:
             return HttpResponseServerError(save_result.error_message)
-        return render(request, 'accounts/profile.html', context={"user": user_data})
+        return render(request, 'accounts/profile.html', context={"user_data": user_data})
     else:
-        return render(request, 'accounts/profile.html', context={"user": user_data})
+        return render(request, 'accounts/profile.html', context={"user_data": user_data})
 
 
 def login(request):
@@ -59,22 +60,23 @@ def login(request):
         form_copy['password2'] = password
 
         if User.objects.filter(username=username).exists():
-            its_new_user = True
-            form = AuthenticationForm(request, data=form_copy)
+            reset_password(username, password)
+            form = AuthenticationForm(data=form_copy)
+
         else:
+            its_new_user = True
             form = UserCreationForm(form_copy)
 
         if form.is_valid():
 
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-
-            form.save()
+            if its_new_user:
+                form.save()
 
             user = authenticate(username=username, password=password)
             if user is not None:
+                if its_new_user:
+                    AdditionalField().save_account({"user": user, "name": username})
                 if user.is_active:
-                    # логинимся
                     auth_login(request, user)
                     return JsonResponse({"result": True, 'csrfmiddlewaretoken': csrf.get_token(request)})
                 else:
@@ -82,29 +84,7 @@ def login(request):
             else:
                 return JsonResponse({"result": False, "error": "user desabled"})
 
-        elif not its_new_user:
-
-            form_copy['email'] = username + "@xxx.com"  # для того чтобы использовать стандартные формы
-            form = PasswordResetForm(form_copy)
-            if form.is_valid():
-                u = User.objects.get(username=username)
-                u.set_password(password)
-                u.save()
-
-                user = authenticate(username=username, password=password)
-
-                if user is not None:
-                    if user.is_active:
-                        # логинимся
-                        auth_login(request, user)
-                        return JsonResponse({"result": True, 'csrfmiddlewaretoken': csrf.get_token(request)})
-                    else:
-                        JsonResponse({"result": False, "error": "user desabled"})
-                else:
-                    return JsonResponse({"result": False, "error": "user desabled"})
-
         else:
-
             error_str = ""
             for key, value in form.errors.as_data().items():
                 error_str += str(key) + ":" + str(value[0].message)
@@ -114,3 +94,15 @@ def login(request):
 
         return render(request, 'accounts/login.html', context={})
 
+
+def reset_password(username: str, password: str) -> bool:
+
+    try:
+        u = User.objects.get(username=username)
+    except ObjectDoesNotExist:
+        return False
+
+    u.set_password(password)
+    u.save()
+
+    return True

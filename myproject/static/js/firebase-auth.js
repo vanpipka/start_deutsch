@@ -51,6 +51,14 @@
         let nbr = phoneNumber;
         $("#code").attr('required', true);
 
+            $("#auth_error").attr('hidden', true)
+            $("#auth_error").text("");
+            $("#s_login").attr('hidden', false);
+            $("#f_login").attr('hidden', true);
+            window.confirmationResult = "";
+
+            return;
+
         var appVerifier = window.recaptchaVerifier;
         firebase
           .auth()
