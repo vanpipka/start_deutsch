@@ -18,69 +18,95 @@
     </div>
     <!-- QUIZ ONE -->
 
-    <div class="container d-flex justify-content-center" style="min-height: 80%">
+    <div class="container mt-3">
+        <div class="row mt-3">
 
-        <div class="quiz_menu d-flex align-items-center w-100 justify-content-center">
+            <div class="col-lg-8">
+                <div class ="d-flex justify-content-center" style="min-height: 80%">
 
-            <span id="loader" class="loader"></span>
-            <div id="test" style="width: 100%;" hidden>
-                <div class="w-100 d-flex justify-content-end">
-                    <a href="/" style="color: #38a4ff; max-width: 20px">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" style="width: 100%">
-                                    <path fill="currentcolor" d="M.974 0L0 .974 5.026 6 0 11.026.974 12 6 6.974 11.026 12l.974-.974L6.974 6 12 .974 11.026 0 6 5.026z"></path>
-                        </svg>
-                    </a>
-                </div>
-                <div class="">
-                    <div class="w-100 d-flex align-items-center justify-content-center">
+                    <div class="quiz_menu d-flex align-items-center w-100 justify-content-center">
 
-                        <div class="ll-repetition__words-left">
-                            <div class="ll-repetition__words-left-number" id="words_count"></div>
-                            <div class="ll-repetition__words-left-text">wörter</div>
-                        </div>
-                    </div>
-
-                    <div class="ll-repetition__text mb-3" id="question_word">
-                    </div>
-
-                    <div class="mt-3 row d-flex justify-content-center">
-
-                        <div class="m-2 col col-10 col-lg-5 col-sm-10">
-
-                            <a href id="left_word_btn" onclick="event.preventDefault(); check_result(this)" class="p-3 genric-btn info-border container-fluid">
-                                <div class="d-flex">
-                                    <div style="margin-top: auto; margin-bottom: auto; width: 5%">←&nbsp;</div>
-                                    <div id="left_word" style="width: 90%"></div>
-                                    <div style="width: 5%"></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="m-2 col col-10 col-lg-5 col-sm-10">
-                                <a href id="right_word_btn" onclick="event.preventDefault(); check_result(this)" class="p-3 genric-btn info-border container-fluid">
-                                    <div class="d-flex">
-                                        <div style="width: 5%"></div>
-                                        <div id="right_word" style="width: 90%"></div>
-                                        <div style="margin-top: auto; margin-bottom: auto; width: 5%">&nbsp;→</div>
-                                    </div>
+                        <span id="loader" class="loader"></span>
+                        <div id="test" style="width: 100%;" hidden>
+                            <div class="w-100 d-flex justify-content-end">
+                                <a href="/" style="color: #38a4ff; max-width: 20px">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" style="width: 100%">
+                                                <path fill="currentcolor" d="M.974 0L0 .974 5.026 6 0 11.026.974 12 6 6.974 11.026 12l.974-.974L6.974 6 12 .974 11.026 0 6 5.026z"></path>
+                                    </svg>
                                 </a>
-                        </div>
-                    </div>
+                            </div>
+                            <div class="">
+                                <div class="w-100 d-flex align-items-center justify-content-center">
 
-                    <div class="d-none row d-md-flex text-center mt-5">
-                        <p style="color: #38a4ff">Ответы можно выбирать стрелками на клавиатуре</p>
+                                    <div class="ll-repetition__words-left">
+                                        <div class="ll-repetition__words-left-number" id="words_count"></div>
+                                        <div class="ll-repetition__words-left-text">wörter</div>
+                                    </div>
+                                </div>
+
+                                <div class="ll-repetition__text mb-3" id="question_word">
+                                </div>
+
+                                <div class="mt-3 row d-flex justify-content-center">
+
+                                    <div class="m-2 col col-10 col-lg-5 col-sm-10">
+
+                                        <a href id="left_word_btn" onclick="event.preventDefault(); check_result(this)" class="p-3 genric-btn info-border container-fluid">
+                                            <div class="d-flex">
+                                                <div style="margin-top: auto; margin-bottom: auto; width: 5%">←&nbsp;</div>
+                                                <div id="left_word" style="width: 90%"></div>
+                                                <div style="width: 5%"></div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="m-2 col col-10 col-lg-5 col-sm-10">
+                                            <a href id="right_word_btn" onclick="event.preventDefault(); check_result(this)" class="p-3 genric-btn info-border container-fluid">
+                                                <div class="d-flex">
+                                                    <div style="width: 5%"></div>
+                                                    <div id="right_word" style="width: 90%"></div>
+                                                    <div style="margin-top: auto; margin-bottom: auto; width: 5%">&nbsp;→</div>
+                                                </div>
+                                            </a>
+                                    </div>
+                                </div>
+
+                                <div class="d-none row d-md-flex text-center mt-5">
+                                    <p style="color: #38a4ff">Ответы можно выбирать стрелками на клавиатуре</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="result" class="p-3 m-3" hidden style="background-color: white; border-radius: 10px;">
+                            {% csrf_token %}
+                            <H5 id="result_header">Результат: </H5>
+                            <table class="table">
+                                <tbody id="result_body">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div id="result" class="p-3 m-3" hidden style="background-color: white; border-radius: 10px;">
-                {% csrf_token %}
-                <H5 id="result_header">Результат: </H5>
-                <table class="table">
-                    <tbody id="result_body">
-                    </tbody>
-                </table>
+            <div class="col-lg-4">
+                <!-- Blog Sidebar -->
+                <div class="blog-sidebar mt-5 mt-lg-0">
+                    <!-- Widget Advertise -->
+                    <div class="widget widget_advertise">
+                        <!-- Yandex.RTB R-A-2104703-3 -->
+                        <div id="yandex_rtb_R-A-2104703-3"></div>
+                        <script>window.yaContextCb.push(()=>{
+                            Ya.Context.AdvManager.render({
+                                renderTo: 'yandex_rtb_R-A-2104703-3',
+                                blockId: 'R-A-2104703-3'
+                            })
+                        })</script>
+                        <!-- /Yandex.RTB R-A-2104703-3 -->
+                    </div>
+                    <!-- End Widget Advertise -->
+                </div>
             </div>
         </div>
     </div>
+
     <script src="/static/js/quiz.js"></script>
 
     <!-- ======= jQuery Library ======= -->
