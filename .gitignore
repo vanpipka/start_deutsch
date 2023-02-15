@@ -12,3 +12,4 @@ db_1.sqlite3
 settings/
 myproject/static/audio
 venv/
+media/

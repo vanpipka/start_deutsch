@@ -1,0 +1,121 @@
+{% load static %}
+{% load home_extras %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'includes/head.html' %}
+<link rel="stylesheet" href="/static/css/exam.css" />
+
+<body>
+
+    <!-- Header -->
+    {% include 'includes/header.html' %}
+    <!-- End Header -->
+    <div style="height: 100px"></div>
+    <!-- Blog Details -->
+    <section class="pt-120 pb-120">
+        <div class="container">
+            <div class="row">
+                    <!-- Post Details -->
+                    <article class="post-details">
+                        <!-- Post Header -->
+                        <header class="entry-header">
+
+                            <h1 class="entry-title">{{ article.name }}</h1>
+                            <input id="exam_id" hidden value="{{ article.id }}"/>
+
+                            <ul class="list-inline list-unstyled entry-meta">
+                                <li>
+                                    <span>Опубликовано: </span>
+                                    <a href="#"><time class="entry-date">{{ article.date|naturalday }}</time></a>
+                                </li>
+                                <li>
+                                    <span>Раздел:</span>
+                                    <a href="{{ article.category.url }}">{{ article.category.name }}</a>
+                                </li>
+                            </ul>
+                        </header>
+                        <!-- End Post Header -->
+                    </article>
+                    <!-- End Post Details -->
+            </div>
+            <div class="row gx-60">
+                <div class="col-lg-8">
+                    <div class ="d-flex justify-content-center" style="min-height: 80%">
+
+                        <div id="test">
+                            <div id="question" class="p-3" style="border-radius: 10px; width: 100%; background-color: white">
+                                <div id="q_header">
+                                    <h5 id=q_section>Загрузка данных</h5>
+                                    <p id=q_numb></p>
+                                    <img id=q_img src="/static/img/bg/exam_preparing.png">
+                                    <div id="loader" class="quiz_menu d-flex align-items-center w-100 justify-content-center" style="
+                                        position: relative;
+                                        top: -100px;">
+                                        <span class="loader" style="border: 5px solid #2564A6; border-bottom-color: transparent;"></span>
+                                    </div>
+                                </div>
+
+                                <div id = "q_answers" class="d-flex justify-content-center mt-3">
+                                </div>
+                            </div>
+
+                            {% if article.audio %}
+                            <div id="audio" class="mt-3">
+                                <audio controls="" style="width: 100%;">
+                                    <source src="{{article.audio}}" type="audio/mpeg">
+                                    Тег audio не поддерживается вашим браузером.
+                                    <a href="{{article.audio}}">Скачайте музыку</a>.
+                                  </audio>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <!-- Blog Sidebar -->
+                    <div class="blog-sidebar mt-5 mt-lg-0">
+                        <!-- Widget Advertise -->
+                        <div class="widget widget_advertise">
+                            <!-- Yandex.RTB R-A-2104703-3 -->
+                            <div id="yandex_rtb_R-A-2104703-3"></div>
+                            <script>window.yaContextCb.push(()=>{
+                              Ya.Context.AdvManager.render({
+                                renderTo: 'yandex_rtb_R-A-2104703-3',
+                                blockId: 'R-A-2104703-3'
+                              })
+                            })</script>
+                            <!-- /Yandex.RTB R-A-2104703-3 -->
+                        </div>
+                        <!-- End Widget Advertise -->
+
+                        <!-- Widget Categories -->
+                        <div class="widget widget_categories">
+                            <h3 class="widget widget-title">Разделы</h3>
+
+                            <ul>
+                                {% for i in categories %}
+                                    <li><a href="/{{ i.url }}">{{ i.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <!-- End Widget Categories -->
+
+                    </div>
+                    <!-- End Blog Sidebar -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Blog Details -->
+
+    {% include "includes/footer.html" %}
+
+    <script src="/static/js/exam.js"></script>
+
+</body>
+
+</html>

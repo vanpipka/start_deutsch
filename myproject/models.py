@@ -55,7 +55,6 @@ class Category(models.Model):
                 "image": self.img_url}
 
 
-# Create your models here.
 class QuestionType(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
     name = models.CharField(max_length=150, default="")

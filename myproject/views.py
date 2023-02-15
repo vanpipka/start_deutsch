@@ -1,10 +1,7 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from django.http import Http404, HttpResponseNotAllowed, HttpResponseServerError, HttpResponseRedirect
 from django.shortcuts import render
 from services import db_backend, make_subscriber, accounts
-from django.conf import settings
-from django.contrib.auth.models import User
-from django.middleware import csrf
 from django.contrib.auth import logout
 
 

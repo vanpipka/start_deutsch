@@ -47,6 +47,7 @@ urlpatterns = [
     path('accounts/profile/', views.profile),
 
     path('quiz/', include('quiz.urls')),
+    path('exam/', include('exam.urls')),
 
     # main
     path('', views.index),

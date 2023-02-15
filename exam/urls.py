@@ -19,11 +19,11 @@ from . import views
 
 urlpatterns = [
 
-    path('words/', views.words),
+    path('', views.exam),
 
     # API
-    path('api/get_random_words', views.api_get_random_words),
-    path('api/set_words_result', views.api_set_words_result),
+    path('api/get_questions/', views.api_get_questions_by_exam),
+    # path('api/set_words_result', views.api_set_words_result),
     # path('api/get_or_create_topic/', views.api_get_or_create_topic),
 
 ]

@@ -1,0 +1,10 @@
+.select-rounded.exam {
+  padding: 20px 30px;
+  font-weight: bold;
+  color: white;
+  background-color: #585c75;
+}
+
+.select-rounded.exam:hover {
+  background-color: #2564A6;
+}

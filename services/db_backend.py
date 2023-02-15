@@ -153,3 +153,11 @@ def save_comment(request) -> bool:
 
     else:
         return False
+
+
+def check_object_exist(func):
+    def wrapper(self, *args, **kwargs):
+        if not self:
+            return None
+        return func(self, *args, **kwargs)
+    return wrapper
