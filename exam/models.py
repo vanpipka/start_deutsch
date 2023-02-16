@@ -102,6 +102,10 @@ class Question(models.Model):
         return f"{self.order}. {self.section}/{self.exam}/{self.id}"
 
 
+class QuestionFieldAdmin(admin.ModelAdmin):
+    list_display = ('order', 'id', 'section', 'exam')
+
+
 class Result(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
     try_id = models.UUIDField(default=uuid.uuid4, help_text="Unique ID")
@@ -135,8 +139,8 @@ class Result(models.Model):
         return {"exam": exam_data, "questions": questions}
 
 
-class QuestionFieldAdmin(admin.ModelAdmin):
-    list_display = ('order', 'id', 'section', 'exam')
+class ResultFieldAdmin(admin.ModelAdmin):
+    list_display = ('try_id', 'date' , 'user', 'exam', 'question', 'answer')
 
 
 def encode_img(obj):
