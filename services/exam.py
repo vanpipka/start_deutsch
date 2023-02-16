@@ -1,8 +1,10 @@
+import json
 from typing import List, Optional
 from urllib.request import Request
 
 from django.db.models.fields.files import ImageFieldFile
-from exam.models import Exam, Question
+from exam.models import Exam, Question, Result
+import uuid
 
 
 def get_exam_from_request(request: Request) -> Optional[Exam]:
@@ -37,6 +39,39 @@ def get_questions(exam: Exam) -> List[dict]:
         result.append(q.get_as_dict())
 
     return result
+
+
+def check_exam_result(request: Request) -> Optional[str]:
+
+    if not request.POST.__contains__('data'):
+        return None
+
+    try_id = uuid.uuid4()
+
+    data = json.loads(request.POST.__getitem__('data'))
+    exam = Exam.get_by_id(data["exam"])
+
+    if not exam:
+        return None
+
+    for i in data["questions"]:
+        record = Result()
+        if request.user.is_authenticated:
+            record.user = request.user
+
+        record.try_id = try_id
+        record.exam = exam
+        record.answer = i["answer"]
+        record.question = Question.get_by_id(i["id"])
+
+        record.save()
+
+    return "/exam/result/?id="+str(try_id)
+
+
+def get_result_data(request: Request) -> Optional[dict]:
+
+    return Result.get_by_try(request.GET.get("id", None))
 
 
 def encode_img(obj) -> Optional[str]:

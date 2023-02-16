@@ -21,8 +21,11 @@ urlpatterns = [
 
     path('', views.exam),
 
+    path('result/', views.result),
+
     # API
     path('api/get_questions/', views.api_get_questions_by_exam),
+    path('api/check_result/', views.api_get_check_result),
     # path('api/set_words_result', views.api_set_words_result),
     # path('api/get_or_create_topic/', views.api_get_or_create_topic),
 

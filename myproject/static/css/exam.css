@@ -5,6 +5,39 @@
   background-color: #585c75;
 }
 
+.select-rounded.exam_light {
+  padding: 20px 30px;
+  font-weight: bold;
+  color: white;
+  background-color: #9da0b3;
+}
+
+.select-rounded.exam_selected {
+  padding: 20px 30px;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+}
+
+.select-rounded.exam_disabled {
+  padding: 20px 30px;
+  font-weight: bold;
+  color: white;
+  background-color: #9da0b3;
+}
+
 .select-rounded.exam:hover {
   background-color: #2564A6;
+}
+
+.select-rounded.exam:active {
+  background-color: #007bff;
+}
+
+.select-rounded.exam_light:active {
+  background-color: #007bff;
+}
+
+.select-rounded.exam_light:hover {
+  background-color: #585c75;
 }

@@ -1,0 +1,179 @@
+{% load static %}
+{% load home_extras %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'includes/head.html' %}
+
+<body>
+
+    <!-- Header -->
+    {% include 'includes/header.html' %}
+    <!-- End Header -->
+    <div style="height: 100px"></div>
+    <!-- Blog Details -->
+    <section class="pt-120 pb-120">
+        <div class="container">
+            <div class="row">
+                    <!-- Post Details -->
+                    <article class="post-details">
+                        <!-- Post Header -->
+                        <header class="entry-header">
+
+                            <h1 class="entry-title">{{ exam.name }}</h1>
+
+                            <ul class="list-inline list-unstyled entry-meta">
+                                <li>
+                                    <span>Дата прохождения: </span>
+                                    <a href="#"><time class="entry-date">{{ exam.date|naturalday }}</time></a>
+                                </li>
+                                <li>
+                                    <span>Раздел:</span>
+                                    <a href="{{ exam.category.url }}">{{ exam.category.name }}</a>
+                                </li>
+                            </ul>
+                        </header>
+                        <!-- End Post Header -->
+                    </article>
+                    <!-- End Post Details -->
+            </div>
+            <div class="row gx-60">
+                <div class="col-lg-8">
+                    <!-- Post Details -->
+                    <article class="post-details">
+
+                        <!-- Post Content -->
+                        {% for i in questions %}
+                            <div class="p-3 mt-3" style="border-radius: 10px; width: 100%; background-color: white">
+                                <div class="owners" style="top: 40px; margin-left: auto;">
+
+                                {% if i.its_right %}
+                                    <div class="justify-content-center start-label">
+                                        <p style="padding: 7px 10px; display: block; margin: 0; color: white; font-weight: bold">
+                                            Ваш ответ: {{ i.answer }} - верно
+                                        </p>
+                                    </div>
+                                {% else %}
+                                    <div class="justify-content-center start-label-red">
+                                        <p style="padding: 7px 10px; display: block; margin: 0; color: white; font-weight: bold">
+                                            Ваш ответ: {{ i.answer }} - не верно
+                                        </p>
+                                    </div>
+                                    <div class="justify-content-center start-label">
+                                        <p style="padding: 7px 10px; display: block; margin: 0; color: white; font-weight: bold">
+                                            Верный ответ: {{ i.right_answer }}
+                                        </p>
+                                    </div>
+                                {% endif %}
+
+                                </div>
+                                <img id=q_img src="{{i.image}}">
+                            </div>
+                        {% endfor %}
+                        <!-- End Post Content -->
+
+                    </article>
+                    <!-- End Post Details -->
+                    {% if comments %}
+                    <!-- Comments -->
+                    <div class="comments-area section-bg mt-60">
+                        <h3 class="comments-title">Всего комментариев: {{ comments|length }}</h3>
+
+                        <ul class="comment-list">
+                            {% for i in comments %}
+                            <li class="comment">
+                                <!-- Single Comment -->
+                                <article class="single-comment media">
+
+                                    <!-- Comment Content -->
+                                    <div class="comment-content media-body">
+                                        <div class="d-flex align-items-center">
+                                            <h4 class="author_name">{{ i.user.name }}</h4>
+                                            <span class="commented-on">
+                                                <time>{{ i.date|naturalday }}</time>
+                                            </span>
+                                        </div>
+
+                                        <p>{{ i.text }}</p>
+
+                                    </div>
+                                    <!-- End Comment Content -->
+                                </article>
+                                <!-- End Single Comment -->
+                            </li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+                    <!-- End Comments -->
+                    {% endif %}
+                    <!-- Comment Respond -->
+                    {% if user.is_active %}
+                    <div class="comment-respond section-bg mt-60">
+                        <h3 class="comment-reply-title">Написать комментарий</h3>
+
+                        <form action="#" method="post" class="comment-form">
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+                            <div class="row pb-2">
+                                <div class="col-12">
+                                    <textarea  name="text" id="text" class="form-control" required="required"
+                                        placeholder="Ваш комментарий"></textarea>
+                                    {{ form.text.errors }}
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn">
+                                <span>Сохранить комментарий</span>
+                            </button>
+                        </form>
+
+                    </div>
+                    {% endif %}
+
+                    <!-- End Comment Respond -->
+                </div>
+                <div class="col-lg-4">
+                    <!-- Blog Sidebar -->
+                    <div class="blog-sidebar mt-5 mt-lg-0">
+                        <!-- Widget Advertise -->
+                        <div class="widget widget_advertise">
+                            <!-- Yandex.RTB R-A-2104703-3 -->
+                            <div id="yandex_rtb_R-A-2104703-3"></div>
+                            <script>window.yaContextCb.push(()=>{
+                              Ya.Context.AdvManager.render({
+                                renderTo: 'yandex_rtb_R-A-2104703-3',
+                                blockId: 'R-A-2104703-3'
+                              })
+                            })</script>
+                            <!-- /Yandex.RTB R-A-2104703-3 -->
+                        </div>
+                        <!-- End Widget Advertise -->
+
+                        <!-- Widget Categories -->
+                        <div class="widget widget_categories">
+                            <h3 class="widget widget-title">Разделы</h3>
+
+                            <ul>
+                                {% for i in categories %}
+                                    <li><a href="/{{ i.url }}">{{ i.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <!-- End Widget Categories -->
+
+                    </div>
+                    <!-- End Blog Sidebar -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Blog Details -->
+
+    {% include "includes/footer.html" %}
+
+</body>
+
+</html>
