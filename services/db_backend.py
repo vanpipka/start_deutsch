@@ -2,8 +2,11 @@ from typing import List, Optional
 from urllib.request import Request
 
 from myproject.models import Category, Article, Comment, AdditionalField
+from django.db.models.aggregates import Max
 from myproject.forms import CommentForm
 from services.constants import CATEGORY_DATA
+from datetime import timedelta
+from django.utils import timezone
 
 
 def get_last_articles(count: int) -> List:
@@ -26,6 +29,16 @@ def get_articles_by_category(category: Category) -> List:
         arr.append(Article.get_as_dict(e))
 
     return arr
+
+
+def get_categories_with_new_materials() -> dict:
+
+    date = timezone.now() - timedelta(days=7)
+
+    query = Article.objects.all().select_related("category").values('category__url').annotate(max_date=Max('date'))
+    max_articles_date = {i["category__url"]: i["max_date"] for i in query if i["max_date"] > date}
+
+    return max_articles_date
 
 
 def get_all_category() -> List:

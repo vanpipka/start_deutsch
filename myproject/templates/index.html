@@ -15,7 +15,7 @@
 
     <!-- Main -->
     <div class="banner style--two ov-hidden d-flex align-items-center justify-content-center" style="min-height: 100vh">
-        <div id="particles" class="bg-img" style="background-image: url(static/img/bg/bg-design-shape.png); background-position: bottom;"><canvas class="particles-js-canvas-el" width="1669" height="1711" style="width: 100%; height: 100%;"></canvas></div>
+        <div id="particles" class="bg-img" style="background-image: url(/static/img/bg/bg-design-shape.png); background-position: bottom;"><canvas class="particles-js-canvas-el" width="1669" height="1711" style="width: 100%; height: 100%;"></canvas></div>
 
         <div class="container mt-3">
             <div class="row section-title text-center text-white main_text mb-3 p-3" style="padding: 5px; margin:0px">
@@ -57,6 +57,11 @@
                             <div class="col col-6 col-md-4">
                                 <a href="/horen/">
                                     <div class="single-product style--three">
+                                        {% if new_materials.horen %}
+                                            <div class="new_materials">
+                                                <p>neu</p>
+                                            </div>
+                                        {% endif %}
                                         <div class="product-img">
                                             <img src="/static/img/media/deutsch/cat.png" alt="">
                                         </div>
@@ -87,6 +92,11 @@
                             <div class="col col-12 col-md-4">
                                 <a href="/lesen/">
                                     <div class="single-product style--three">
+                                        {% if new_materials.lesen %}
+                                            <div class="new_materials">
+                                                <p>neu</p>
+                                            </div>
+                                        {% endif %}
                                         <div class="product-img">
                                             <img src="/static/img/media/deutsch/owl.png" alt="">
                                         </div>
@@ -122,6 +132,11 @@
                             <div class="col col-12 mb-3">
                                 <!-- Collection -->
                                 <a href="/briefs/" class="single-collection" data-count="12">
+                                    {% if new_materials.brief %}
+                                        <div class="new_materials">
+                                            <p>neu</p>
+                                        </div>
+                                    {% endif %}
                                     <div class="collection-img">
                                         <img src="/static/img/media/deutsch/dog.png" style="width: 39px">
                                     </div>
@@ -135,6 +150,11 @@
                             <div class="col col-12 mb-3">
                                 <!-- Collection -->
                                 <a href="/sprechen/" class="single-collection" data-count="12">
+                                    {% if new_materials.sprechen %}
+                                        <div class="new_materials">
+                                            <p>neu</p>
+                                        </div>
+                                    {% endif %}
                                     <div class="collection-img">
                                         <img src="/static/img/media/deutsch/duck.png" style="width: 39px">
                                     </div>
@@ -148,6 +168,11 @@
                             <div class="col col-12 mb-3">
                                 <!-- Collection -->
                                 <a href="/prufungen/" class="single-collection" data-count="12">
+                                    {% if new_materials.prufungen %}
+                                        <div class="new_materials">
+                                            <p>neu</p>
+                                        </div>
+                                    {% endif %}
                                     <div class="collection-img">
                                         <img src="/static/img/media/deutsch/gethe.png" style="width: 39px">
                                     </div>
@@ -161,6 +186,11 @@
                             <div class="col col-12 mb-3">
                                 <!-- Collection -->
                                 <a href="/wortschatz/" class="single-collection" data-count="12">
+                                    {% if new_materials.wortschatz %}
+                                        <div class="new_materials">
+                                            <p>neu</p>
+                                        </div>
+                                    {% endif %}
                                     <div class="collection-img">
                                         <img src="/static/img/media/deutsch/bears.png" style="width: 39px">
                                     </div>
@@ -197,6 +227,11 @@
                     <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
                         <!-- Collection -->
                         <a href="{{ o.url }}" class="single-collection" data-count="01">
+                            {% if o.its_new %}
+                                <div class="new_materials">
+                                    <p>neu</p>
+                                </div>
+                            {% endif %}
                             <div class="collection-img">
                                 <img src="{{o.category.image}}" style="width: 39px">
                             </div>

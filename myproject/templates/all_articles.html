@@ -30,6 +30,11 @@
                     <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
                         <!-- Collection -->
                         <a href="{{ o.url }}" class="single-collection" data-count="01">
+                            {% if o.its_new %}
+                                <div class="new_materials">
+                                    <p>neu</p>
+                                </div>
+                            {% endif %}
                             <div class="collection-img">
                                 <img src="{{o.category.image}}" style="width: 39px">
                             </div>

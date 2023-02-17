@@ -6,6 +6,7 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 import uuid
 import datetime
+from django.utils import timezone
 
 
 # Create your models here.
@@ -51,7 +52,7 @@ class Category(models.Model):
                 "name": self.name,
                 "count": self.count,
                 "description": self.description,
-                "url": self.url,
+                "url": f"/{self.url}",
                 "image": self.img_url}
 
 
@@ -111,13 +112,16 @@ class Article(models.Model):
 
     def get_as_dict(self):
 
+        min_date = timezone.now() - datetime.timedelta(days=7)
+
         return {"id": self.id,
                 "name": self.name,
                 "date": self.date,
                 "text": self.text,
                 "description": self.description,
                 "category": Category.get_as_dict(self.category),
-                "url": f"/article/?id={self.id}"
+                "url": f"/article/?id={self.id}",
+                "its_new": True if self.date > min_date else False
                 }
 
     @staticmethod

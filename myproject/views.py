@@ -28,7 +28,7 @@ def index(request):
     return render(
         request,
         'index.html',
-        context={"category": db_backend.get_all_category(),
+        context={"new_materials": db_backend.get_categories_with_new_materials(),
                  "articles": db_backend.get_last_articles(11),
                  "head": "более 100+ заданий",
                  "keywords": "Задания а1"}

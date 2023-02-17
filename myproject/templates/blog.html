@@ -50,6 +50,11 @@
                         <div class="col-xl-4 col-lg-6 col-sm-6 mt-3">
                             <!-- Collection -->
                             <a href="{{ article.url }}" class="single-collection" data-count="01" style="background: linear-gradient(45deg, #007bff 0%, #00FFAB 100%);">
+                                {% if article.its_new %}
+                                    <div class="new_materials">
+                                        <p>neu</p>
+                                    </div>
+                                {% endif %}
                                 <div class="content">
                                     <h5>{{article.name}}</h5>
                                     <p>{{ article.description|cut_text  }}</p>
@@ -84,7 +89,7 @@
 
                             <ul>
                                 {% for i in categories %}
-                                    <li><a href="/{{ i.url }}">{{ i.name }}</a></li>
+                                    <li><a href="{{ i.url }}">{{ i.name }}</a></li>
                                 {% endfor %}
                             </ul>
                         </div>
