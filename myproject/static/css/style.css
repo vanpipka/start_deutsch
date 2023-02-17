@@ -5898,7 +5898,8 @@ textarea.form-control {
   background: rgb(220, 53, 69);
   background: -o-linear-gradient(45deg, rgb(220, 53, 69) 0%, #d63384 100%);
   background: linear-gradient(45deg, rgb(220, 53, 69) 0%, #d63384 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007bff', endColorstr='#007bff',GradientType=1 );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#007bff', endColorstr='#007bff', GradientType=1);
+}
 
 
 table tbody td.red,

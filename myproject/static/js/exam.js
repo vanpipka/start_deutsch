@@ -69,6 +69,7 @@ function append_button(parent, text, class_name, index, disable){
     new_button.classList.add("text-uppercase");
     new_button.classList.add(class_name);
     new_button.classList.add("m-3");
+    //new_button.classList.add("m-sm-1");
     new_button.onclick = ()=>check_result(index);
     new_button.innerText = text;
     parent.appendChild(new_button);
@@ -83,9 +84,9 @@ function check_result(index){
         position = position-1
     }else if (index == -2) {
         position = position+1
-        console.log(position)
     }else if (index == -3) {
         get_result()
+        return;
     }else{
         questions_array[position].answer = index;
         position = position+1
