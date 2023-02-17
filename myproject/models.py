@@ -79,7 +79,7 @@ class Page(models.Model):
 class Article(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
     name = models.CharField(max_length=150, default="")
-    date = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField(auto_created=True, default=datetime.datetime.now())
     text = models.TextField(default="", blank=True)
     description = models.TextField(default="", blank=True)
     its_test = models.BooleanField(default=False, blank=True)
