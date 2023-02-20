@@ -7,19 +7,18 @@ from django.db import models
 from django.db.models.fields.files import ImageFieldFile, FieldFile
 from django.contrib.auth.models import User
 from services.db_backend import check_object_exist
-from myproject.models import Category
+from myproject.models import Category, Record
 import uuid
 
 
 class Exam(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
     name = models.CharField(max_length=150, default="", blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_created=True, default=datetime.now())
     audio = models.FileField(null=True, blank=True)
 
     def __str__(self):
-        return f"{self.name} / {self.category}"
+        return f"{self.name} / {'self.category'}"
 
     @check_object_exist
     def get_as_dict(self):
@@ -43,7 +42,7 @@ class Exam(models.Model):
 
 
 class ExamFieldAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'id', 'date')
+    list_display = ('name', 'id', 'date')
 
 
 class Section(models.Model):

@@ -76,15 +76,31 @@ class Page(models.Model):
         return str(self.position) + "_" + str(self.name)
 
 
-class Article(models.Model):
+class Record(models.Model):
+    
+    class Meta:
+        abstract = True
+        ordering = ['date']
+        verbose_name = u'Запись'
+        verbose_name_plural = u'записи'
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
     name = models.CharField(max_length=150, default="")
     date = models.DateTimeField(auto_created=True, default=datetime.datetime.now())
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, blank=True,
+                                 default="00000000-0000-0000-0000-000000000000")
+
+
+class Article(Record):
+
+    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
+    # name = models.CharField(max_length=150, default="")
+    # date = models.DateTimeField(auto_created=True, default=datetime.datetime.now())
+    # category = models.ForeignKey('Category', on_delete=models.CASCADE, blank=True,
+    #                              default="00000000-0000-0000-0000-000000000000")
     text = models.TextField(default="", blank=True)
     description = models.TextField(default="", blank=True)
     its_test = models.BooleanField(default=False, blank=True)
-    category = models.ForeignKey('Category', on_delete=models.CASCADE, blank=True,
-                                 default="00000000-0000-0000-0000-000000000000")
     prev = models.ForeignKey('Article', on_delete=models.CASCADE, blank=True,
                              default="d0861558-e44f-4d78-b277-35e8098b885a")
     pages = models.ManyToManyField(Page)
