@@ -11,14 +11,9 @@ from myproject.models import Category, Record
 import uuid
 
 
-class Exam(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
-    name = models.CharField(max_length=150, default="", blank=True)
-    date = models.DateTimeField(auto_created=True, default=datetime.now())
-    audio = models.FileField(null=True, blank=True)
+class Exam(Record):
 
-    def __str__(self):
-        return f"{self.name} / {'self.category'}"
+    audio = models.FileField(null=True, blank=True)
 
     @check_object_exist
     def get_as_dict(self):

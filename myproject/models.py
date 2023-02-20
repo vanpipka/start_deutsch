@@ -77,7 +77,7 @@ class Page(models.Model):
 
 
 class Record(models.Model):
-    
+
     class Meta:
         abstract = True
         ordering = ['date']
@@ -87,8 +87,11 @@ class Record(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
     name = models.CharField(max_length=150, default="")
     date = models.DateTimeField(auto_created=True, default=datetime.datetime.now())
-    category = models.ForeignKey('Category', on_delete=models.CASCADE, blank=True,
-                                 default="00000000-0000-0000-0000-000000000000")
+    category = models.ForeignKey('myproject.Category', on_delete=models.CASCADE, blank=True,
+                                 default="00000000-0000-0000-0000-000000000000", null=True)
+
+    def __str__(self):
+        return f"{self.name} / {self.category}"
 
 
 class Article(Record):
@@ -104,9 +107,6 @@ class Article(Record):
     prev = models.ForeignKey('Article', on_delete=models.CASCADE, blank=True,
                              default="d0861558-e44f-4d78-b277-35e8098b885a")
     pages = models.ManyToManyField(Page)
-
-    def __str__(self):
-        return str(self.name)
 
     def get_absolute_url(self):
         return f'/article/?id={self.id}'
