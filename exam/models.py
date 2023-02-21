@@ -6,6 +6,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.db.models.fields.files import ImageFieldFile, FieldFile
 from django.contrib.auth.models import User
+from django.utils import timezone
+
 from myproject.models import Category, Record
 from services.common_services import check_if_new, check_object_exist
 import uuid
@@ -105,7 +107,7 @@ class QuestionFieldAdmin(admin.ModelAdmin):
 class Result(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
     try_id = models.UUIDField(default=uuid.uuid4, help_text="Unique ID")
-    date = models.DateTimeField(auto_created=True, default=datetime.now())
+    date = models.DateTimeField(auto_created=True, default=timezone.now)
     user = models.ForeignKey(User, related_name="user", on_delete=models.CASCADE, null=True, blank=True)
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)

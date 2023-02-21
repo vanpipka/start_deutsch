@@ -4,6 +4,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.contrib import admin
 from django.contrib.auth.models import User
+from django.utils import timezone
+
 from services.common_services import check_if_new, check_object_exist
 import uuid
 import datetime
@@ -13,13 +15,7 @@ import datetime
 class Subscriber(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
     email = models.CharField(max_length=150, default="")
-    date = models.DateTimeField(blank=True, null=True)
-
-    def save(self, *args, **kwargs):
-        if not self.date:
-            self.date = datetime.datetime.now()
-
-        super(Subscriber, self).save(*args, **kwargs)
+    date = models.DateTimeField(auto_created=True, default=timezone.now, blank=True)
 
     def __str__(self):
         return str(self.email)
@@ -67,7 +63,7 @@ class Record(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
     name = models.CharField(max_length=150, default="")
     #
-    date = models.DateTimeField(auto_created=True, default=datetime.datetime.now())
+    date = models.DateTimeField(auto_created=True, default=timezone.now)
     category = models.ForeignKey('myproject.Category', on_delete=models.CASCADE, blank=True,
                                  default="00000000-0000-0000-0000-000000000000", null=True)
 
@@ -139,15 +135,9 @@ class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, blank=True,
                                 default="00000000-0000-0000-0000-000000000000")
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, default="00000000-0000-0000-0000-000000000000")
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_created=True, default=timezone.now)
     text = models.TextField(default="", blank=True)
     publish = models.BooleanField(default=False)
-
-    def save(self, *args, **kwargs):
-        if not self.date:
-            self.date = datetime.datetime.now()
-
-        super(Comment, self).save(*args, **kwargs)
 
     def get_as_dict(self) -> dict:
 
