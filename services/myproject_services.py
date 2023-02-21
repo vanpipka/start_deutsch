@@ -2,6 +2,7 @@ from typing import List, Optional
 from urllib.request import Request
 
 from myproject.models import Category, Article, Comment, AdditionalField
+from exam.models import Exam
 import exam.models as exam_models
 from django.db.models.aggregates import Max
 from myproject.forms import CommentForm
@@ -41,9 +42,20 @@ def get_articles_by_category(category: Category) -> List:
 def get_categories_with_new_materials() -> dict:
 
     date = timezone.now() - timedelta(days=7)
+    max_articles_date = {}
 
-    query = Article.objects.all().select_related("category").values('category__url').annotate(max_date=Max('date'))
-    max_articles_date = {i["category__url"]: i["max_date"] for i in query if i["max_date"] > date}
+    query_a = Article.objects.all().select_related("category").values('category__url').annotate(max_date=Max('date'))
+    query_e = Exam.objects.all().select_related("category").values('category__url').annotate(max_date=Max('date'))
+
+    for i in query_a:
+        if i["max_date"] > date:
+            max_articles_date[i["category__url"]] = i["max_date"]
+
+    for i in query_e:
+
+        print(i["max_date"] > date)
+        if i["max_date"] > date:
+            max_articles_date[i["category__url"]] = i["max_date"]
 
     return max_articles_date
 

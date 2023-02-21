@@ -77,7 +77,7 @@ def make_new_exam(request: Request) -> Optional[dict]:
         return {"error": "exam exists"}
 
     path = os.path.join(MEDIA_ROOT, exam_name)
-    img_path = os.path.join(path, "img")
+    img_path = os.path.join(exam_name, "img")
 
     audio = ""
     questions = []
@@ -86,7 +86,7 @@ def make_new_exam(request: Request) -> Optional[dict]:
         for filename in files:
             file_data = filename.split(".")
             if file_data[-1] == "mp3":
-                audio = os.path.join(path, filename)
+                audio = os.path.join(exam_name, filename)
             elif file_data[-1] == "png":
                 questions.append({"name": file_data[0],
                                   "file": os.path.join(img_path, filename)})
@@ -101,7 +101,7 @@ def make_new_exam(request: Request) -> Optional[dict]:
 
         question = Question()
         question.exam = exam
-        question.section = Section.get_by_id(SERVICES_IDS.get(f"horen_{part}"))
+        question.section = Section.get_by_id(SERVICES_IDS.get(f"{exam_name.split(' ')[0]}_{part}"))
         question.order = number
         question.right_answer = answer
         question.image = q.get("file", "")

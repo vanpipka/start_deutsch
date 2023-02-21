@@ -43,4 +43,7 @@ CATEGORY_DATA = {
 
 SERVICES_IDS = {"horen_0": "b9eb34cd-823b-4814-affc-21fb27aa45de",
                 "horen_1": "f68a0241-abf6-47f1-866b-a71d0a342d52",
-                "horen_2": "4b890bc1-9264-4a1e-bfbe-2943a4542836"}
+                "horen_2": "4b890bc1-9264-4a1e-bfbe-2943a4542836",
+                "lesen_0": "59ea99ae-b61b-4d46-8836-98203762e022",
+                "lesen_1": "54c51a04-f201-4bf1-b664-ebd39486bbb7",
+                "lesen_2": "5f65294f-1880-4718-911b-c9a20dafa1eb"}
