@@ -63,6 +63,7 @@ def article(request):
                 'blog-details.html',
                 context={"categories": myproject_services.get_all_category(),
                          "article": article,
+                         "title": article.get("title"),
                          "comments": myproject_services.get_comments_by_article(request, article_id)}
             )
 

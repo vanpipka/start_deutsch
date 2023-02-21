@@ -6,7 +6,8 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-from services.common_services import check_if_new, check_object_exist
+from services.common_services import check_if_new
+from services.constants import CATEGORY_DATA
 import uuid
 
 
@@ -103,6 +104,7 @@ class Article(Record):
                 "name": self.name,
                 "date": self.date,
                 "text": self.text,
+                "title": self.title if self.title else CATEGORY_DATA.get(self.category.url, {}).get("head", ""),
                 "description": self.description,
                 "category": Category.get_as_dict(self.category),
                 "url": f"/article/?id={self.id}",
@@ -117,11 +119,6 @@ class Article(Record):
         try:
 
             elem = Article.objects.get(id=article_id)
-
-            # ==============================
-            if "http://start-deutsch.ru/static/deutsch" in elem.text:
-                elem.text = elem.text.replace("http://start-deutsch.ru/static/deutsch", "/static")
-                elem.save()
 
         except ObjectDoesNotExist:
             elem = None
