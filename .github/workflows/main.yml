@@ -28,7 +28,7 @@ jobs:
           source venv/bin/activate
           cd start_deutsch        
           python manage.py makemigrations
-          python manage.py
+          python manage.py migrate
   restart:
     needs: migrations
     runs-on: start-deutsch
