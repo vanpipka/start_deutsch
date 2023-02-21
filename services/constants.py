@@ -40,3 +40,7 @@ CATEGORY_DATA = {
                     "description": "Все материалы немецкий A1, Примеры тестов Гёте"
                 }
 }
+
+SERVICES_IDS = {"horen_0": "b9eb34cd-823b-4814-affc-21fb27aa45de",
+                "horen_1": "f68a0241-abf6-47f1-866b-a71d0a342d52",
+                "horen_2": "4b890bc1-9264-4a1e-bfbe-2943a4542836"}

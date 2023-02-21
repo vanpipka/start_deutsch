@@ -1,6 +1,7 @@
-from django.http import Http404, JsonResponse, HttpResponseServerError
+from django.http import Http404, JsonResponse, HttpResponseServerError, HttpResponseForbidden
 from django.shortcuts import render
-from services.exam_services import get_exam_data, get_questions_by_exam, check_exam_result, get_result_data
+from services.exam_services import get_exam_data, get_questions_by_exam, check_exam_result,\
+    get_result_data, make_new_exam
 from services.myproject_services import get_all_category
 
 
@@ -34,11 +35,19 @@ def result(request):
         context=result_data
     )
 
+
 def api_get_questions_by_exam(request):
     response = JsonResponse({'data': get_questions_by_exam(request)})
     response['Access-Control-Allow-Origin'] = '*'
 
     return response
+
+
+def api_make_exam(request):
+    if request.user.is_superuser:
+        return JsonResponse(make_new_exam(request))
+    else:
+        raise HttpResponseForbidden
 
 
 def api_get_check_result(request):

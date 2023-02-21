@@ -54,6 +54,15 @@ class Section(models.Model):
     def __str__(self):
         return f"{self.order}. {self.text} / {self.description[:20]}..."
 
+    @staticmethod
+    def get_by_id(q_id: str) -> Optional["Section"]:
+
+        try:
+            elem = Section.objects.get(id=q_id)
+        except ObjectDoesNotExist:
+            elem = None
+        return elem
+
     @check_object_exist
     def get_as_dict(self):
         return {"id": self.id,
