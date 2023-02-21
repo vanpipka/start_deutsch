@@ -4,9 +4,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.contrib import admin
 from django.contrib.auth.models import User
+from services.common_services import check_if_new, check_object_exist
 import uuid
 import datetime
-from django.utils import timezone
 
 
 # Create your models here.
@@ -56,26 +56,6 @@ class Category(models.Model):
                 "image": self.img_url}
 
 
-class QuestionType(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
-    name = models.CharField(max_length=150, default="")
-
-    def __str__(self):
-        return str(self.name)
-
-
-class Page(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
-    name = models.CharField(max_length=150, default="")
-    image = models.ImageField()
-    position = models.DecimalField(default=0, decimal_places=0, max_digits=2, blank=True)
-    right_answer = models.DecimalField(default=0, decimal_places=0, max_digits=2, blank=True)
-    type = models.ForeignKey('QuestionType', on_delete=models.CASCADE, null=True, blank=True)
-
-    def __str__(self):
-        return str(self.position) + "_" + str(self.name)
-
-
 class Record(models.Model):
 
     class Meta:
@@ -86,6 +66,7 @@ class Record(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
     name = models.CharField(max_length=150, default="")
+    title = models.CharField(max_length=90, default="")
     date = models.DateTimeField(auto_created=True, default=datetime.datetime.now())
     category = models.ForeignKey('myproject.Category', on_delete=models.CASCADE, blank=True,
                                  default="00000000-0000-0000-0000-000000000000", null=True)
@@ -96,17 +77,11 @@ class Record(models.Model):
 
 class Article(Record):
 
-    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
-    # name = models.CharField(max_length=150, default="")
-    # date = models.DateTimeField(auto_created=True, default=datetime.datetime.now())
-    # category = models.ForeignKey('Category', on_delete=models.CASCADE, blank=True,
-    #                              default="00000000-0000-0000-0000-000000000000")
     text = models.TextField(default="", blank=True)
     description = models.TextField(default="", blank=True)
     its_test = models.BooleanField(default=False, blank=True)
     prev = models.ForeignKey('Article', on_delete=models.CASCADE, blank=True,
                              default="d0861558-e44f-4d78-b277-35e8098b885a")
-    pages = models.ManyToManyField(Page)
 
     def get_absolute_url(self):
         return f'/article/?id={self.id}'
@@ -128,8 +103,6 @@ class Article(Record):
 
     def get_as_dict(self):
 
-        min_date = timezone.now() - datetime.timedelta(days=7)
-
         return {"id": self.id,
                 "name": self.name,
                 "date": self.date,
@@ -137,7 +110,7 @@ class Article(Record):
                 "description": self.description,
                 "category": Category.get_as_dict(self.category),
                 "url": f"/article/?id={self.id}",
-                "its_new": True if self.date > min_date else False
+                "its_new": check_if_new(self.date)
                 }
 
     @staticmethod

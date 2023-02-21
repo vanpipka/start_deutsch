@@ -2,6 +2,7 @@ from typing import List, Optional
 from urllib.request import Request
 
 from myproject.models import Category, Article, Comment, AdditionalField
+import exam.models as exam_models
 from django.db.models.aggregates import Max
 from myproject.forms import CommentForm
 from services.constants import CATEGORY_DATA
@@ -23,10 +24,16 @@ def get_articles_by_category(category: Category) -> List:
 
     arr = []
 
-    for e in Article.objects.all().filter(category=category).order_by('-date'):
+    articles = list(Article.objects.all().filter(category=category))
+    exams = list(exam_models.Exam.objects.all().filter(category=category))
+
+    for e in sort_list_by_date(articles + exams):  #  .order_by('-date'):
         if str(e.id) == '00000000-0000-0000-0000-000000000000':
             continue
-        arr.append(Article.get_as_dict(e))
+        if isinstance(e, exam_models.Exam):
+            arr.append(exam_models.Exam.get_as_dict(e))
+        elif isinstance(e, Article):
+            arr.append(Article.get_as_dict(e))
 
     return arr
 
@@ -168,9 +175,5 @@ def save_comment(request) -> bool:
         return False
 
 
-def check_object_exist(func):
-    def wrapper(self, *args, **kwargs):
-        if not self:
-            return None
-        return func(self, *args, **kwargs)
-    return wrapper
+def sort_list_by_date(lst: List) -> List:
+    return sorted(lst, key=lambda x: x.date, reverse=True)

@@ -6,8 +6,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.db.models.fields.files import ImageFieldFile, FieldFile
 from django.contrib.auth.models import User
-from services.db_backend import check_object_exist
 from myproject.models import Category, Record
+from services.common_services import check_if_new, check_object_exist
 import uuid
 
 
@@ -24,6 +24,7 @@ class Exam(Record):
                 "date": self.date,
                 "audio": encode_audio(self.audio),
                 "url": f"/exam/?id={self.id}",
+                "its_new": check_if_new(self.date)
                 }
 
     @staticmethod

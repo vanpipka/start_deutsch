@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.http import Http404, HttpResponseNotAllowed, HttpResponseServerError, HttpResponseRedirect
 from django.shortcuts import render
-from services import db_backend, make_subscriber, accounts
+from services import myproject_services, make_subscriber, accounts
 from django.contrib.auth import logout
 
 
@@ -28,10 +28,11 @@ def index(request):
     return render(
         request,
         'index.html',
-        context={"new_materials": db_backend.get_categories_with_new_materials(),
-                 "articles": db_backend.get_last_articles(11),
+        context={"new_materials": myproject_services.get_categories_with_new_materials(),
+                 "articles": myproject_services.get_last_articles(11),
                  "head": "более 100+ заданий",
-                 "keywords": "Задания а1"}
+                 "keywords": "DEUTSCH A1, FEB, GOETHE, ПРИМЕРЫ, PRÜFUNG, ZERTIFIKAT, HÖREN, "
+                             "МАТЕРИАЛЫ ПОДГОТОВКИ, ТЕСТ, LÖSUNGEN, HÖREN, BRIEF".lower()}
     )
 
 
@@ -41,7 +42,7 @@ def article(request):
 
         if not request.user.is_authenticated:
             raise HttpResponseNotAllowed()
-        if db_backend.save_comment(request):
+        if myproject_services.save_comment(request):
             return HttpResponseRedirect(request.get_full_path())
         else:
             raise HttpResponseServerError("Unknown mistake")
@@ -52,7 +53,7 @@ def article(request):
         if not article_id:
             raise Http404("Article not found")
 
-        article = db_backend.get_article_by_id(article_id)
+        article = myproject_services.get_article_by_id(article_id)
 
         if not article:
             raise Http404("Article not found")
@@ -60,9 +61,9 @@ def article(request):
         return render(
                 request,
                 'blog-details.html',
-                context={"categories": db_backend.get_all_category(),
+                context={"categories": myproject_services.get_all_category(),
                          "article": article,
-                         "comments": db_backend.get_comments_by_article(request, article_id)}
+                         "comments": myproject_services.get_comments_by_article(request, article_id)}
             )
 
 
@@ -83,7 +84,7 @@ def subscribe(request):
 
 def blog(request):
 
-    category = db_backend.get_category_by_url(request)
+    category = myproject_services.get_category_by_url(request)
 
     if not category:
         raise Http404("Page not found")
@@ -91,7 +92,7 @@ def blog(request):
     return render(
             request,
             "blog.html",
-            context=db_backend.get_context_by_category(category)
+            context=myproject_services.get_context_by_category(category)
     )
 
 
@@ -100,7 +101,7 @@ def all_articles(request):
     return render(
             request,
             "all_articles.html",
-            context=db_backend.get_main_context(request)
+            context=myproject_services.get_main_context(request)
     )
 
 

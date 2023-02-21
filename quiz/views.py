@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from services.quiz import get_or_create_topic, get_random_words, set_words_result
+from services.quiz_services import get_or_create_topic, get_random_words, set_words_result
 from django.shortcuts import render, redirect
 
 

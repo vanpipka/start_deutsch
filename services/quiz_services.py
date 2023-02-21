@@ -5,7 +5,6 @@ from urllib.request import Request
 
 from django.db.models.fields.files import ImageFieldFile
 from quiz.models import Result, Topic, Word
-from myproject.models import Category
 
 WORDS_COUNT = 758
 

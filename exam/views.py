@@ -1,7 +1,7 @@
 from django.http import Http404, JsonResponse, HttpResponseServerError
 from django.shortcuts import render
-from services.exam import get_exam_data, get_questions_by_exam, check_exam_result, get_result_data
-from services.db_backend import get_all_category
+from services.exam_services import get_exam_data, get_questions_by_exam, check_exam_result, get_result_data
+from services.myproject_services import get_all_category
 
 
 def exam(request):
