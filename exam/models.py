@@ -25,7 +25,7 @@ class Exam(Record):
                 "name": self.name,
                 "category": Category.get_as_dict(self.category),
                 "date": self.date,
-                "audio": encode_audio(self.audio),
+                "audio": encode_audio(self.audio).replace("/home/start-deutsch/start-deutsch/start_deutsch/media", ""),
                 "url": f"/exam/?id={self.id}",
                 "its_new": check_if_new(self.date)
                 }
@@ -100,7 +100,7 @@ class Question(models.Model):
         return {"id": self.id,
                 "text": self.text,
                 "order": self.order,
-                "image": encode_img(self.image),
+                "image": encode_img(self.image).replace("/home/start-deutsch/start-deutsch/start_deutsch/media", ""),
                 "section": Section.get_as_dict(self.section),
                 "answers": [i for i in self.section.type.split(" ")],
                 }
