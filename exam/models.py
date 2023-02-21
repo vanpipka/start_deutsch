@@ -13,6 +13,7 @@ import uuid
 
 class Exam(Record):
 
+    title = models.CharField(max_length=90, default="")
     audio = models.FileField(null=True, blank=True)
 
     @check_object_exist

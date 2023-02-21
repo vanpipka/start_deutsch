@@ -66,7 +66,7 @@ class Record(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
     name = models.CharField(max_length=150, default="")
-    # title = models.CharField(max_length=90, default="")
+    #
     date = models.DateTimeField(auto_created=True, default=datetime.datetime.now())
     category = models.ForeignKey('myproject.Category', on_delete=models.CASCADE, blank=True,
                                  default="00000000-0000-0000-0000-000000000000", null=True)
@@ -80,6 +80,7 @@ class Article(Record):
     text = models.TextField(default="", blank=True)
     description = models.TextField(default="", blank=True)
     its_test = models.BooleanField(default=False, blank=True)
+    title = models.CharField(max_length=90, default="")
     prev = models.ForeignKey('Article', on_delete=models.CASCADE, blank=True,
                              default="d0861558-e44f-4d78-b277-35e8098b885a")
 
