@@ -15,8 +15,21 @@ def get_last_articles(count: int) -> List:
 
     result = []
 
-    for element in Article.objects.all().order_by('-date').select_related("category")[:count]:
-        result.append(Article.get_as_dict(element))
+    articles = list(Article.objects.all().filter()[:count])
+    exams = list(exam_models.Exam.objects.all().filter()[:count])
+
+    pointer = 0
+
+    for e in sort_list_by_date(articles + exams):
+
+        if pointer > count:
+            break
+        if str(e.id) == '00000000-0000-0000-0000-000000000000':
+            continue
+        if isinstance(e, exam_models.Exam):
+            result.append(exam_models.Exam.get_as_dict(e))
+        elif isinstance(e, Article):
+            result.append(Article.get_as_dict(e))
 
     return result
 
