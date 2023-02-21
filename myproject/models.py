@@ -62,7 +62,7 @@ class Record(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
     name = models.CharField(max_length=150, default="")
-    #
+    title = models.CharField(max_length=90, default="")
     date = models.DateTimeField(auto_created=True, default=timezone.now)
     category = models.ForeignKey('myproject.Category', on_delete=models.CASCADE, blank=True,
                                  default="00000000-0000-0000-0000-000000000000", null=True)
