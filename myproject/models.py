@@ -76,7 +76,6 @@ class Article(Record):
     text = models.TextField(default="", blank=True)
     description = models.TextField(default="", blank=True)
     its_test = models.BooleanField(default=False, blank=True)
-    title = models.CharField(max_length=90, default="")
     prev = models.ForeignKey('Article', on_delete=models.CASCADE, blank=True,
                              default="d0861558-e44f-4d78-b277-35e8098b885a")
 

@@ -15,7 +15,6 @@ import uuid
 
 class Exam(Record):
 
-    title = models.CharField(max_length=90, default="")
     audio = models.FileField(null=True, blank=True)
 
     @check_object_exist
@@ -106,7 +105,6 @@ class QuestionFieldAdmin(admin.ModelAdmin):
 
 class Result(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID")
-    try_id = models.UUIDField(default=uuid.uuid4, help_text="Unique ID")
     date = models.DateTimeField(auto_created=True, default=timezone.now)
     user = models.ForeignKey(User, related_name="user", on_delete=models.CASCADE, null=True, blank=True)
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
