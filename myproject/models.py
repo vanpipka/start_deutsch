@@ -8,7 +8,6 @@ from django.utils import timezone
 
 from services.common_services import check_if_new, check_object_exist
 import uuid
-import datetime
 
 
 # Create your models here.
@@ -128,6 +127,11 @@ class Article(Record):
             elem = None
 
         return elem
+
+
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ("name", "date", "category")
+    list_filter = ("category",)
 
 
 class Comment(models.Model):
