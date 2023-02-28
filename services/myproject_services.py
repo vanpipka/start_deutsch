@@ -15,8 +15,8 @@ def get_last_articles(count: int) -> List:
 
     result = []
 
-    articles = list(Article.objects.all().filter()[:count])
-    exams = list(exam_models.Exam.objects.all().filter()[:count])
+    articles = list(Article.objects.all().filter().order_by("-date")[:count])
+    exams = list(exam_models.Exam.objects.all().filter().order_by("-date")[:count])
 
     pointer = 0
 
