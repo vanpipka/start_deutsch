@@ -3,6 +3,10 @@ import random
 from typing import List, Optional
 from urllib.request import Request
 
+from django.db.models.functions import TruncDay
+from django.db.models import Count
+
+from services.myproject_services import get_users_info
 from django.db.models.fields.files import ImageFieldFile
 from quiz.models import Result, Topic, Word
 
@@ -72,6 +76,71 @@ def set_words_result(request: Request) -> bool:
         return True
 
     return result
+
+
+def get_quiz_stats_by_period(request: Request) -> bool:
+
+    q = Result.objects.all().annotate(day=TruncDay('date'))
+    q = q.values("user", "day", "right_answers", "question_count")
+
+    stats_builder = StatsBuilder(q)
+    result = {"data_by_date": stats_builder.get_stat_by_period(),
+              "data_by_user": stats_builder.get_stat_by_user()}
+
+    return result
+
+
+class StatsBuilder:
+
+    def __init__(self, query):
+        self.query = query
+        self.__dataset = []
+
+        self.__make_dataset()
+
+    def __make_dataset(self) -> List:
+        if not self.__dataset:
+            self.__dataset = list(self.query)
+
+    def get_stat_by_period(self) -> List[dict]:
+
+        data_map = {}
+
+        for i in self.__dataset:
+            day = i["day"]
+            value = data_map.get(day, None)
+            if not value:
+                data_map[day] = 1
+            else:
+                data_map[day] = value + 1
+
+        data = [{"key": key, "value": value} for key, value in data_map.items()]
+
+        return sorted(data, key=lambda x: x["key"])
+
+    def get_stat_by_user(self) -> List[dict]:
+
+        data_map = {}
+        users_set = set()
+
+        for i in self.__dataset:
+
+            user = i["user"]
+
+            if user:
+                users_set.add(user)
+
+            value = data_map.get(user, None)
+            if not value:
+                data_map[user] = 1
+            else:
+                data_map[user] = value + 1
+
+        users_info = get_users_info(users_set)
+
+        data = [{"key": users_info.get(key, {"name": "unknown user"})["name"], "value": value} for key, value in data_map.items()]
+
+        return data
 
 
 def encode_img(obj) -> Optional[str]:

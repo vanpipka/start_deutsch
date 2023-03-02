@@ -1,0 +1,130 @@
+{% load home_extras %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+{% include 'includes/head.html' %}
+
+<body style="height: 100vh">
+
+    <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+
+    <!-- header-start -->
+    {% include 'includes/header.html' %}
+
+    <div style="min-height: 150px"></div>
+
+    <div class="container">
+
+        <div class="row">
+        <div class="col-6">
+            <canvas id="days_chart" style=""></canvas>
+        </div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col">
+                    <canvas id="users_chart" style=""></canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+
+        refresh_days_stats();
+
+        function refresh_days_stats(){
+
+                let xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState != 4) return;
+                    if (xhr.status != 200) {
+                    } else {
+                        let data = JSON.parse(xhr.responseText);
+                        make_chart(data.datasets.data_by_date, "days_chart");
+                        make_chart(data.datasets.data_by_user, "users_chart");
+                    }
+                }
+                xhr.open("GET", "/quiz/api/get_stats", true);
+                xhr.send();
+
+        }
+
+        function make_chart(dataset, canvas){
+
+            const ctx = document.getElementById(canvas);
+            labels = []
+            data = []
+
+            for (i=0; i < dataset.length; i++){
+                labels.push(dataset[i].key.substring(0, 10))
+                data.push(dataset[i].value)
+            }
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: labels,
+                  datasets: [{
+                    label: canvas,
+                    data: data,
+                    borderWidth: 1
+                  }]
+                },
+                options: {
+                  scales: {
+                    y: {
+                      beginAtZero: true
+                    }
+                  }
+                }
+            });
+
+        }
+
+        function make_users_chart(days_data){
+
+            labels = []
+            data = []
+
+            for (i=0; i < days_data.length; i++){
+                labels.push(days_data[i].date.substring(0, 10))
+                data.push(days_data[i].count)
+            }
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: labels,
+                  datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    borderWidth: 1
+                  }]
+                },
+                options: {
+                  scales: {
+                    y: {
+                      beginAtZero: true
+                    }
+                  }
+                }
+            });
+
+        }
+
+
+    </script>
+</body>
+</html>

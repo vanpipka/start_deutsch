@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from services.quiz_services import get_or_create_topic, get_random_words, set_words_result
+import services.quiz_services as quiz_services
 from django.shortcuts import render, redirect
 
 
@@ -20,9 +20,18 @@ def words(request):
 	)
 
 
+def stats(request):
+
+	if request.user.is_superuser:
+
+		return render(request, "admin_stats.html", {})
+
+	return redirect('/forbiden')
+
+
 def api_get_or_create_topic(request):
 
-	response = JsonResponse({'data': get_or_create_topic(request)})
+	response = JsonResponse({'data': quiz_services.get_or_create_topic(request)})
 	response['Access-Control-Allow-Origin'] = '*'
 
 	return response
@@ -30,7 +39,7 @@ def api_get_or_create_topic(request):
 
 def api_get_random_words(request):
 
-	response = JsonResponse({'data': get_random_words(request)})
+	response = JsonResponse({'data': quiz_services.get_random_words(request)})
 	response['Access-Control-Allow-Origin'] = '*'
 
 	return response
@@ -39,6 +48,14 @@ def api_get_random_words(request):
 def api_set_words_result(request):
 
 	if request.POST.__contains__('data'):
-		return JsonResponse({'status': set_words_result(request)})
+		return JsonResponse({'status': quiz_services.set_words_result(request)})
+
+	return redirect('/forbiden')
+
+
+def api_get_stats(request):
+
+	if request.user.is_superuser:
+		return JsonResponse({'datasets': quiz_services.get_quiz_stats_by_period(request)})
 
 	return redirect('/forbiden')

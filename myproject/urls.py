@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from quiz.views import stats as quiz_stats
 from django.contrib.sitemaps.views import sitemap
 from .sitemaps import ArticleSitemap
 from django.conf import settings
@@ -26,6 +27,8 @@ sitemaps = {
 }
 
 urlpatterns = [
+
+    path('admin/stats/quiz/', quiz_stats),
     path('admin/', admin.site.urls),
     path('robots.txt', views.robots),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),

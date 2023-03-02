@@ -24,6 +24,7 @@ urlpatterns = [
     # API
     path('api/get_random_words', views.api_get_random_words),
     path('api/set_words_result', views.api_set_words_result),
+    path('api/get_stats', views.api_get_stats),
     # path('api/get_or_create_topic/', views.api_get_or_create_topic),
 
 ]
