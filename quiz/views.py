@@ -20,15 +20,6 @@ def words(request):
 	)
 
 
-def stats(request):
-
-	if request.user.is_superuser:
-
-		return render(request, "admin_stats.html", {})
-
-	return redirect('/forbiden')
-
-
 def api_get_or_create_topic(request):
 
 	response = JsonResponse({'data': quiz_services.get_or_create_topic(request)})
@@ -52,10 +43,3 @@ def api_set_words_result(request):
 
 	return redirect('/forbiden')
 
-
-def api_get_stats(request):
-
-	if request.user.is_superuser:
-		return JsonResponse({'datasets': quiz_services.get_quiz_stats_by_period(request)})
-
-	return redirect('/forbiden')

@@ -4,7 +4,6 @@ from typing import List, Optional
 from urllib.request import Request
 
 from django.db.models.functions import TruncDay
-from django.db.models import Count
 
 from services.myproject_services import get_users_info
 from django.db.models.fields.files import ImageFieldFile
@@ -78,14 +77,14 @@ def set_words_result(request: Request) -> bool:
     return result
 
 
-def get_quiz_stats_by_period(request: Request) -> bool:
+def get_quiz_stats_by_period(request: Request) -> dict:
 
     q = Result.objects.all().annotate(day=TruncDay('date'))
     q = q.values("user", "day", "right_answers", "question_count")
 
     stats_builder = StatsBuilder(q)
     result = {"data_by_date": stats_builder.get_stat_by_period(),
-              "data_by_user": stats_builder.get_stat_by_user()}
+              "data_by_user": []}  # stats_builder.get_stat_by_user()}
 
     return result
 

@@ -1,6 +1,6 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.http import Http404, HttpResponseNotAllowed, HttpResponseServerError, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from services import myproject_services, make_subscriber, accounts
 from django.contrib.auth import logout
 
@@ -106,13 +106,26 @@ def all_articles(request):
     )
 
 
+def stats(request):
+
+    if request.user.is_superuser:
+        return render(request, "admin_stats.html", {})
+    return redirect('/forbiden')
+
+
+def api_get_stats(request):
+
+    if request.user.is_superuser:
+        return JsonResponse({'datasets': myproject_services.get_stats_by_period(request)})
+
+    return redirect('/forbiden')
+
+
 # accounts
 def profile(request):
 
     if request.user.is_authenticated:
-
         return accounts.profile(request)
-
     else:
         return HttpResponseRedirect("/accounts/login/")
 

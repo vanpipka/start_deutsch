@@ -3,6 +3,8 @@ from typing import List, Optional
 from urllib.request import Request
 
 from django.db.models.fields.files import ImageFieldFile
+from django.db.models.functions import TruncDay
+
 from exam.models import Exam, Question, Result, Section
 import uuid
 
@@ -112,6 +114,47 @@ def make_new_exam(request: Request) -> Optional[dict]:
 
 def get_result_data(request: Request) -> Optional[dict]:
     return Result.get_by_try(request.GET.get("id", None))
+
+
+def get_exam_stats_by_period(request: Request) -> dict:
+
+    q = Result.objects.all().annotate(day=TruncDay('date'))
+    q = q.values("try_id", "day").distinct()
+
+    stats_builder = StatsBuilder(q)
+    result = {"data_by_date": stats_builder.get_stat_by_period(),
+              "data_by_user": []}  # stats_builder.get_stat_by_user()}
+
+    return result
+
+
+class StatsBuilder:
+
+    def __init__(self, query):
+        self.query = query
+        self.__dataset = []
+
+        self.__make_dataset()
+
+    def __make_dataset(self) -> List:
+        if not self.__dataset:
+            self.__dataset = list(self.query)
+
+    def get_stat_by_period(self) -> List[dict]:
+
+        data_map = {}
+
+        for i in self.__dataset:
+            day = i["day"]
+            value = data_map.get(day, None)
+            if not value:
+                data_map[day] = 1
+            else:
+                data_map[day] = value + 1
+
+        data = [{"key": key, "value": value} for key, value in data_map.items()]
+
+        return sorted(data, key=lambda x: x["key"])
 
 
 def encode_img(obj) -> Optional[str]:

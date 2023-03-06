@@ -200,5 +200,19 @@ def save_comment(request) -> bool:
         return False
 
 
+def get_stats_by_period(request: Request) -> dict:
+
+    from services.exam_services import get_exam_stats_by_period
+    from services.quiz_services import get_quiz_stats_by_period
+
+    quiz_stats = get_quiz_stats_by_period(request)
+    exam_stats = get_exam_stats_by_period(request)
+
+    result = {"data_by_date": quiz_stats["data_by_date"],
+              "data_by_user": exam_stats["data_by_date"]}
+
+    return result
+
+
 def sort_list_by_date(lst: List) -> List:
     return sorted(lst, key=lambda x: x.date, reverse=True)
