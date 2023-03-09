@@ -1228,7 +1228,6 @@ blockquote {
   padding-bottom: 10px;
   padding-left: 35px;
   position: relative;
-  font-style: italic;
 }
 
 blockquote > p {
@@ -1252,6 +1251,11 @@ blockquote cite:after {
   position: absolute;
   z-index: -1;
   background-color: var(--c1);
+}
+
+.blockquote-footer {
+  margin-top: 0rem;
+  margin-bottom: 0rem;
 }
 
 .rating {
