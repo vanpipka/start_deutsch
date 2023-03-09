@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Category, Article, AdditionalField, Comment, Subscriber, AdditionalFieldAdmin
-from .models import CommentAdmin, ArticleAdmin
+from .models import CommentAdmin, ArticleAdmin, ArticleLog, ArticleLogAdmin
 from quiz.models import Topic, Word
 from exam.models import Exam, Question, Section, Result
 from exam.models import SectionFieldAdmin, ExamFieldAdmin, QuestionFieldAdmin, ResultFieldAdmin
@@ -17,3 +17,4 @@ admin.site.register(Result, ResultFieldAdmin)
 admin.site.register(Subscriber)
 admin.site.register(Topic)
 admin.site.register(Word)
+admin.site.register(ArticleLog, ArticleLogAdmin)

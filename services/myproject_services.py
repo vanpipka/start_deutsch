@@ -1,7 +1,8 @@
+import datetime
 from typing import List, Optional
 from urllib.request import Request
 
-from myproject.models import Category, Article, Comment, AdditionalField
+from myproject.models import Category, Article, Comment, AdditionalField, ArticleLog
 from exam.models import Exam
 import exam.models as exam_models
 from django.db.models.aggregates import Max
@@ -145,6 +146,8 @@ def get_article_by_id(article_id: str) -> Optional[dict]:
     if not article:
         return None
 
+    write_to_the_log(article)
+
     return Article.get_as_dict(article)
 
 
@@ -216,3 +219,18 @@ def get_stats_by_period(request: Request) -> dict:
 
 def sort_list_by_date(lst: List) -> List:
     return sorted(lst, key=lambda x: x.date, reverse=True)
+
+
+def write_to_the_log(article: Article):
+
+    date = datetime.date.today()
+    log_query = list(ArticleLog.objects.all().filter(article=article, date=date)[:1])
+    if len(log_query) != 0:
+        log = log_query[0]
+    else:
+        log = ArticleLog(article=article, date=date)
+
+    log.count += 1
+    log.save()
+
+

@@ -126,6 +126,17 @@ class Article(Record):
         return elem
 
 
+class ArticleLog(models.Model):
+
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, blank=True, default="00000000-0000-0000-0000-000000000000")
+    date = models.DateField(auto_created=True, default=timezone.now)
+    count = models.IntegerField(default=0)
+
+
+class ArticleLogAdmin(admin.ModelAdmin):
+    list_display = ("article", "date", "count")
+
+
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ("name", "date", "category")
     list_filter = ("category",)
