@@ -16,6 +16,7 @@ def exam(request):
         request,
         'exam.html',
         context={"article": exam_data,
+                 "title": exam_data.get("title"),
                  "categories": get_all_category()}
     )
 

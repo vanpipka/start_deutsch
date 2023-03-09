@@ -25,6 +25,7 @@ class Exam(Record):
                 "name": self.name,
                 "category": Category.get_as_dict(self.category),
                 "date": self.date,
+                "title": self.title,
                 "audio": encode_audio(self.audio).replace("/home/start-deutsch/start-deutsch/start_deutsch/media", ""),
                 "url": f"/exam/?id={self.id}",
                 "its_new": check_if_new(self.date)
